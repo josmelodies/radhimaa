@@ -1284,3 +1284,27 @@ footer span {
     transition-duration: 0.01ms !important;
   }
 }
+
+.bloom {
+  cursor: pointer;
+  text-align: center;
+}
+
+.bloom small {
+  display: block;
+  margin-top: 12px;
+  color: #ffe1eb !important;
+  font-size: 14px;
+  line-height: 1.7;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.bloom.bloomed {
+  background: #633044 !important;
+  border-color: #e58aa7 !important;
+}
+
+.bloom.bloomed span {
+  transform: scale(1.2) rotate(10deg);
+}
