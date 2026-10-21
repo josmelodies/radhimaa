@@ -6,7 +6,9 @@
 
 document.addEventListener("DOMContentLoaded", () => {
   const $ = (selector, root = document) => root.querySelector(selector);
-  const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
+  const $$ = (selector, root = document) => [
+    ...root.querySelectorAll(selector)
+  ];
 
   // Safely attach an event only when an element exists.
   function on(selector, eventName, callback) {
@@ -37,6 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         window.setTimeout(() => {
           const envelope = $("#little-envelope");
+
           if (envelope) {
             envelope.scrollIntoView({
               behavior: "smooth",
@@ -125,8 +128,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   on("#revealBtn", "click", showLetter);
-
-  // Support an optional legacy button if it exists.
   on("#openLetter", "click", showLetter);
 
   // ==========================================
@@ -160,6 +161,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
+    // Create a burst of roses and hearts.
     for (let i = 0; i < 18; i++) {
       const rose = document.createElement("span");
 
@@ -175,6 +177,7 @@ document.addEventListener("DOMContentLoaded", () => {
       window.setTimeout(() => rose.remove(), 2000);
     }
 
+    // Reveal the surprise photo.
     const photo = $("#photoSurprise");
 
     if (photo) {
@@ -192,6 +195,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 250);
     }
 
+    // Show a temporary notification.
     const toast = $("#toast");
 
     if (toast) {
@@ -254,24 +258,97 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // ==========================================
-  // 6. COMPLIMENT FLOWERS
+  // 6. PICK A FLOWER, FIND A COMPLIMENT
+  // FIXED: compliments always appear on click
   // ==========================================
 
-  $$(".bloom").forEach(button => {
-    button.setAttribute("aria-expanded", "false");
+  const flowerCompliments = [
+    "You have a beautiful heart, Radhimaa. 🌷",
+    "Your smile can brighten someone's darkest day. ☀️",
+    "You deserve all the happiness in the world. 💗",
+    "You make ordinary moments feel special. ✨",
+    "You are stronger than you sometimes realize. 🦋",
+    "Your kindness makes the world more beautiful. 🌸",
+    "You are one of a kind. Never forget that. 💖",
+    "You deserve love, laughter, and endless good memories. 🌹",
+    "You make the people around you feel appreciated. 💐",
+    "Never forget how special you are. 💌",
+    "You bring a little sunshine wherever you go. 🌻",
+    "You deserve all the wonderful things life has to offer. 💕"
+  ];
 
-    button.addEventListener("click", () => {
-      const message = $("small", button);
-      if (!message) return;
+  $$(".bloom").forEach((flower, index) => {
+    // Find the compliment element inside this flower.
+    let message = flower.querySelector("small");
 
-      button.classList.toggle("bloomed");
-      message.hidden = !message.hidden;
+    // Create a compliment element if the HTML doesn't contain one.
+    if (!message) {
+      message = document.createElement("small");
+      flower.appendChild(message);
+    }
 
-      button.setAttribute(
-        "aria-expanded",
-        String(!message.hidden)
-      );
+    // Preserve an existing compliment, or provide a default one.
+    if (!message.textContent.trim()) {
+      message.textContent =
+        flower.dataset.compliment ||
+        flowerCompliments[index % flowerCompliments.length];
+    }
+
+    // Make sure every flower is an accessible button.
+    if (flower.tagName !== "BUTTON") {
+      flower.setAttribute("role", "button");
+      flower.setAttribute("tabindex", "0");
+    }
+
+    if (flower.tagName === "BUTTON" && !flower.hasAttribute("type")) {
+      flower.setAttribute("type", "button");
+    }
+
+    // Hide the compliment initially.
+    message.hidden = true;
+    message.style.display = "none";
+
+    flower.setAttribute("aria-expanded", "false");
+
+    // Show or hide the compliment.
+    function toggleCompliment() {
+      const isHidden =
+        message.hidden ||
+        window.getComputedStyle(message).display === "none";
+
+      if (isHidden) {
+        message.hidden = false;
+        message.style.display = "block";
+        message.style.visibility = "visible";
+        message.style.opacity = "1";
+
+        flower.classList.add("bloomed");
+        flower.setAttribute("aria-expanded", "true");
+      } else {
+        message.hidden = true;
+        message.style.display = "none";
+
+        flower.classList.remove("bloomed");
+        flower.setAttribute("aria-expanded", "false");
+      }
+    }
+
+    flower.addEventListener("click", event => {
+      // Don't let a click on a nested link activate the flower.
+      if (event.target.closest("a")) return;
+
+      toggleCompliment();
     });
+
+    // Allow keyboard interaction for non-button flower elements.
+    if (flower.tagName !== "BUTTON") {
+      flower.addEventListener("keydown", event => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          toggleCompliment();
+        }
+      });
+    }
   });
 
   // ==========================================
@@ -328,6 +405,8 @@ document.addEventListener("DOMContentLoaded", () => {
     finalScreen.classList.add("show");
     finalScreen.setAttribute("aria-hidden", "false");
     document.body.style.overflow = "hidden";
+
+    if (closeFinalButton) closeFinalButton.focus();
   }
 
   function closeFinalSurprise() {
@@ -365,9 +444,11 @@ document.addEventListener("DOMContentLoaded", () => {
   // ==========================================
 
   const sorryButton = $("#sorryButton");
-  const apologyMessage = $("#apologyMessage");
+  const apologyMessage = $("#apologyMessage") || $("#sorryNote");
 
   if (sorryButton && apologyMessage) {
+    sorryButton.setAttribute("aria-expanded", "false");
+
     sorryButton.addEventListener("click", event => {
       event.preventDefault();
 
@@ -395,7 +476,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (!href || !href.startsWith("#")) return;
 
-      const target = $(href);
+      let target;
+
+      try {
+        target = $(href);
+      } catch {
+        return;
+      }
 
       if (target) {
         event.preventDefault();
