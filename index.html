@@ -9,6 +9,31 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  
+<div id="passwordGate" class="password-gate">
+  <form class="password-card" id="passwordForm">
+    <div class="gate-flowers">🌹 💌 🌷</div>
+    <p class="gate-eyebrow">A LITTLE SECRET GARDEN</p>
+    <h2>Just for you, Radhimaa ♡</h2>
+    <p>This little garden has a secret.<br>
+      Enter your password to discover your surprise. ✨
+    </p>
+
+    <label for="sitePassword">Your secret password</label>
+    <input
+      id="sitePassword"
+      type="password"
+      placeholder="Type your password..."
+      autocomplete="off"
+      required
+    >
+
+    <p id="gateError" class="gate-error" aria-live="polite"></p>
+    <button class="btn" type="submit">Unlock my garden 🌸</button>
+    <div class="gate-footer">MADE WITH LOVE ♡</div>
+  </form>
+</div>
+
   <main id="app">
     <div class="petals" id="petals" aria-hidden="true"></div>
 
