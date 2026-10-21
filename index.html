@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +9,8 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+  <!-- PASSWORD GATE -->
   <div id="passwordGate" role="dialog" aria-modal="true" aria-labelledby="gateTitle">
     <form class="gate-card" id="passwordForm">
       <div class="gate-flowers" aria-hidden="true">🌹 💌 🌷</div>
@@ -15,21 +18,31 @@
       <h2 id="gateTitle">Just for you, Radhimaa</h2>
       <p>This little garden is waiting for its special person. 🌸<br>Enter the secret password to come inside.</p>
       <label for="sitePassword">Your secret password</label>
-      <input id="sitePassword" type="password" placeholder="Type your password…" autocomplete="off" required autofocus>
+      <input id="sitePassword" type="password" placeholder="Type your password…" autocomplete="off" required>
       <div class="gate-error" id="gateError" aria-live="polite"></div>
       <button class="btn gate-btn" type="submit">Unlock my garden ✨</button>
       <div class="gate-foot">MADE WITH LOVE ♡</div>
     </form>
   </div>
 
+  <!-- MAIN WEBSITE -->
   <main id="app">
+
     <nav class="garden-nav" aria-label="Garden sections">
-      <a href="#home">Home 🌷</a><a href="#little-things">Reminders</a><a href="#letter">Letter 💌</a>
-      <a href="#little-envelope">Open envelope</a><a href="#blooming-compliments">Flowers</a><a href="#photo-scrapbook">Scrapbook</a>
-      <a href="#happy-jar">Happy jar</a><a href="#friendship-music">Music 🎶</a><a href="#finalSurpriseButton">Final surprise ✨</a>
+      <a href="#home">Home 🌷</a>
+      <a href="#little-things">Reminders</a>
+      <a href="#letter">Letter 💌</a>
+      <a href="#little-envelope">Open envelope</a>
+      <a href="#blooming-compliments">Flowers</a>
+      <a href="#photo-scrapbook">Scrapbook</a>
+      <a href="#happy-jar">Happy jar</a>
+      <a href="#friendship-music">Music 🎶</a>
+      <a href="#finalSurpriseButton">Final surprise ✨</a>
     </nav>
+
     <div class="petals" id="petals" aria-hidden="true"></div>
 
+    <!-- HOME -->
     <header class="hero" id="home">
       <div class="hero-inner">
         <div class="eyebrow">a little something, just for you</div>
@@ -40,24 +53,42 @@
       <div class="scroll-note">a garden of kind words · scroll gently ↓</div>
     </header>
 
+    <!-- REMINDERS -->
     <section id="little-things">
       <div class="section-inner">
         <div class="section-label">the little things</div>
         <h2 class="section-title">Things I hope you never forget</h2>
         <p class="section-desc">A few reminders, wrapped up like flowers, for the days when you need them most.</p>
+
         <div class="memory-grid">
-          <article class="memory"><div class="icon">🌷</div><h3>You matter.</h3><p>Your presence makes a difference in ways you might not even notice. The world is softer with you in it.</p></article>
-          <article class="memory"><div class="icon">🦋</div><h3>You can bloom.</h3><p>You don't have to have everything figured out. Even flowers take their own sweet time to open.</p></article>
-          <article class="memory"><div class="icon">💌</div><h3>You're appreciated.</h3><p>For your laughter, your kindness, your chaos, and all the little things that make you wonderfully you.</p></article>
+          <article class="memory">
+            <div class="icon">🌷</div>
+            <h3>You matter.</h3>
+            <p>Your presence makes a difference in ways you might not even notice. The world is softer with you in it.</p>
+          </article>
+
+          <article class="memory">
+            <div class="icon">🦋</div>
+            <h3>You can bloom.</h3>
+            <p>You don't have to have everything figured out. Even flowers take their own sweet time to open.</p>
+          </article>
+
+          <article class="memory">
+            <div class="icon">💌</div>
+            <h3>You're appreciated.</h3>
+            <p>For your laughter, your kindness, your chaos, and all the little things that make you wonderfully you.</p>
+          </article>
         </div>
       </div>
     </section>
 
+    <!-- LETTER -->
     <section id="letter">
       <div class="section-inner">
         <div class="section-label">sealed with a smile</div>
         <h2 class="section-title">A note for Radhimaa</h2>
         <p class="section-desc">No special occasion needed. Some people deserve to be reminded that they're special, just because.</p>
+
         <div class="letter-wrap">
           <div class="hidden-letter" id="letterText">
             <p>Hey Radhimaa, 🌹</p>
@@ -67,138 +98,418 @@
             <p>Keep blooming, okay? The world needs your kind of magic.</p>
             <p class="signoff">Your bestie, always ♡</p>
           </div>
-          <div class="reveal" id="revealPrompt"><button class="btn" id="revealBtn">Unfold the letter 💌</button></div>
+
+          <div class="reveal" id="revealPrompt">
+            <button class="btn" id="revealBtn" type="button">Unfold the letter 💌</button>
+          </div>
         </div>
       </div>
     </section>
 
+    <!-- GARDEN AND SURPRISES -->
     <section class="garden">
       <div class="section-inner">
         <div class="section-label">a wish for you</div>
         <div class="bouquet" aria-hidden="true">🌸 🌹 🌼 🌷</div>
+
         <p class="garden-quote">“May life give you a thousand little reasons to smile, and may you never forget how much light you bring to the people around you.”</p>
-        <p class="tiny">sending you sunshine, petals & good vibes</p>
-        <button class="btn" id="petalBtn">Send a shower of flowers 🌷</button>
+        <p class="tiny">sending you sunshine, petals &amp; good vibes</p>
+
+        <button class="btn" id="petalBtn" type="button">Send a shower of flowers 🌷</button>
+
         <div class="photo-surprise" id="photoSurprise" aria-live="polite">
-          <div class="photo-heart"><img src="radhimaa.png" alt="Radhimaa, surrounded by love and roses" loading="lazy"></div>
-          <h3>For my favourite Radhimaa 🌹</h3><p>You deserve all the roses in the world. Thank you for being you, bestie. ❤️</p>
+          <div class="photo-heart">
+            <img src="radhimaa.png" alt="Radhimaa, surrounded by love and roses" loading="lazy">
+          </div>
+          <h3>For my favourite Radhimaa 🌹</h3>
+          <p>You deserve all the roses in the world. Thank you for being you, bestie. ❤️</p>
         </div>
-        <button class="btn final-trigger" id="finalSurpriseButton">Open your secret final surprise 💗</button>
+
+        <button class="btn final-trigger" id="finalSurpriseButton" type="button">
+          Open your secret final surprise 💗
+        </button>
       </div>
     </section>
 
+    <!-- ENVELOPE -->
     <section class="feature-section" id="little-envelope">
       <div class="feature-inner">
-        <div class="section-label">a letter, just for you</div><h2 class="feature-title">A tiny envelope of love</h2>
+        <div class="section-label">a letter, just for you</div>
+        <h2 class="feature-title">A tiny envelope of love</h2>
         <p class="feature-copy">Tap the envelope to open it. A little note will appear, one word at a time.</p>
-        <div class="envelope-stage"><button class="envelope" id="envelopeButton" aria-label="Open the animated letter"></button></div>
-        <p class="envelope-note" id="envelopeHint">A little note is tucked inside ♡</p><div class="typed-letter" id="typedLetter" aria-live="polite"></div>
+
+        <div class="envelope-stage">
+          <button class="envelope" id="envelopeButton" type="button" aria-label="Open the animated letter"></button>
+        </div>
+
+        <p class="envelope-note" id="envelopeHint">A little note is tucked inside ♡</p>
+        <div class="typed-letter" id="typedLetter" aria-live="polite"></div>
       </div>
     </section>
 
+    <!-- FLOWERS -->
     <section class="feature-section" id="blooming-compliments">
       <div class="feature-inner">
-        <div class="section-label">little blooms for you</div><h2 class="feature-title">Pick a flower, find a compliment</h2>
+        <div class="section-label">little blooms for you</div>
+        <h2 class="feature-title">Pick a flower, find a compliment</h2>
         <p class="feature-copy">Every flower has a reminder waiting just for you. Tap each one to let it bloom.</p>
+
         <div class="compliment-garden" id="complimentGarden">
-          <button class="bloom"><span>🌷</span>Bloom one<small hidden>You make ordinary moments feel special. 💗</small></button>
-          <button class="bloom"><span>🌼</span>Bloom two<small hidden>Your kindness stays with people. ✨</small></button>
-          <button class="bloom"><span>🌹</span>Bloom three<small hidden>You deserve the same care you give others. 🌸</small></button>
-          <button class="bloom"><span>🌸</span>Bloom four<small hidden>Your laugh is a little kind of sunshine. ☀️</small></button>
+          <button class="bloom" type="button"><span>🌷</span>Bloom one<small hidden>You make ordinary moments feel special. 💗</small></button>
+          <button class="bloom" type="button"><span>🌼</span>Bloom two<small hidden>Your kindness stays with people. ✨</small></button>
+          <button class="bloom" type="button"><span>🌹</span>Bloom three<small hidden>You deserve the same care you give others. 🌸</small></button>
+          <button class="bloom" type="button"><span>🌸</span>Bloom four<small hidden>Your laugh is a little kind of sunshine. ☀️</small></button>
         </div>
       </div>
     </section>
 
+    <!-- SCRAPBOOK -->
     <section class="feature-section" id="photo-scrapbook">
       <div class="feature-inner">
-        <div class="section-label">little moments, kept close</div><h2 class="feature-title">Our tiny scrapbook</h2>
-        <p class="feature-copy">A little space for favorite memories. Put your photos in this folder and update the image filenames and captions in index.html.</p>
+        <div class="section-label">little moments, kept close</div>
+        <h2 class="feature-title">Our tiny scrapbook</h2>
+        <p class="feature-copy">A little space for favorite memories. Keep your photos in the same folder as this HTML file.</p>
+
         <div class="scrapbook">
-          <figure class="scrap-frame" style="--tilt:-2deg"><img src="rg (1).jpeg" alt="Radhimaa in the friendship scrapbook" loading="lazy"><figcaption>Someone worth celebrating ♡</figcaption></figure>
-          <figure class="scrap-frame" style="--tilt:-2deg"><img src="rg (2).jpeg" alt="Radhimaa in the friendship scrapbook" loading="lazy"><figcaption>A day to remember♡</figcaption></figure>
-          <figure class="scrap-frame" style="--tilt:-2deg"><img src="rg (3).jpeg" alt="Radhimaa in the friendship scrapbook" loading="lazy"><figcaption>More laughs, always♡</figcaption></figure>
+          <figure class="scrap-frame" style="--tilt:-2deg">
+            <img src="rg (1).jpeg" alt="Radhimaa in the friendship scrapbook" loading="lazy">
+            <figcaption>Someone worth celebrating ♡</figcaption>
+          </figure>
+
+          <figure class="scrap-frame" style="--tilt:-2deg">
+            <img src="rg (2).jpeg" alt="Radhimaa in the friendship scrapbook" loading="lazy">
+            <figcaption>A day to remember ♡</figcaption>
+          </figure>
+
+          <figure class="scrap-frame" style="--tilt:-2deg">
+            <img src="rg (3).jpeg" alt="Radhimaa in the friendship scrapbook" loading="lazy">
+            <figcaption>More laughs, always ♡</figcaption>
+          </figure>
         </div>
       </div>
     </section>
 
+    <!-- HAPPY JAR -->
     <section class="feature-section" id="happy-jar">
       <div class="feature-inner">
-        <div class="section-label">a little joy, on demand</div><h2 class="feature-title">The happy-message jar</h2>
+        <div class="section-label">a little joy, on demand</div>
+        <h2 class="feature-title">The happy-message jar</h2>
         <p class="feature-copy">Whenever the day feels heavy, pick a tiny message from the jar.</p>
-        <div class="feature-card jar"><div class="jar-emoji" id="jarEmoji">🫙</div><div class="jar-message" id="jarMessage" aria-live="polite">There is a little happiness waiting inside.</div><button class="btn" id="drawMessage">Pick a happy thought ✨</button></div>
+
+        <div class="feature-card jar">
+          <div class="jar-emoji" id="jarEmoji">🫙</div>
+          <div class="jar-message" id="jarMessage" aria-live="polite">There is a little happiness waiting inside.</div>
+          <button class="btn" id="drawMessage" type="button">Pick a happy thought ✨</button>
+        </div>
       </div>
     </section>
 
+    <!-- MUSIC -->
     <section class="feature-section" id="friendship-music">
-<div class="section-label">a soft soundtrack</div>
-<h2 class="feature-title">A song for this little garden</h2>
+      <div class="feature-inner">
+        <div class="section-label">a soft soundtrack</div>
+        <h2 class="feature-title">A song for this little garden</h2>
+        <p class="feature-copy">Your song is here—press play and let it soundtrack your friendship memories.</p>
 
-<p class="feature-copy">
-  Your song is here—press play and let it soundtrack your friendship memories.
-</p>
+        <div class="feature-card music-player">
+          <div style="font-size:2.5rem">🎶 🌸 🎶</div>
+          <p style="color:#795362;line-height:1.7">A soundtrack for your friendship memories.</p>
 
-<div class="feature-card music-player">
-  <div style="font-size:2.5rem">🎶 🌸 🎶</div>
-  <p style="color:#795362;line-height:1.7">
-    A soundtrack for your friendship memories.
-  </p>
-
-  <audio id="friendshipAudio" controls preload="metadata">
-    <source src="friendship-song.mp3" type="audio/mpeg">
-  </audio>
-</div>
+          <audio id="friendshipAudio" controls preload="metadata">
+            <source src="friendship-song.mp3" type="audio/mpeg">
+            Your browser does not support audio playback.
+          </audio>
+        </div>
+      </div>
     </section>
 
+    <!-- APOLOGY BUTTON AND MESSAGE -->
+    <section class="feature-section" id="sorry-section">
+      <div class="feature-inner">
+        <div class="section-label">one thing from my heart</div>
+        <h2 class="feature-title">A little message for you 💗</h2>
+        <p class="feature-copy">There's something I want you to know.</p>
+
+        <button class="btn" id="sorryButton" type="button">
+          I'm Sorry 🥺❤️
+        </button>
+
+        <div id="apologyMessage" hidden style="margin:25px auto;padding:28px;max-width:480px;background:#fff0f5;color:#63384b;border-radius:20px;text-align:center;box-shadow:0 8px 28px #63384b20;">
+          <div style="font-size:2.5rem">🥺🌹💗</div>
+          <h2>I'm Really Sorry, Radhimaa</h2>
+          <p>I never wanted to hurt you or make you feel bad.</p>
+          <p>You are important to me, and our friendship means a lot to me.</p>
+          <p>I know that words alone cannot fix everything, but I genuinely want to make things right.</p>
+          <p>Please take your time. Whenever you're ready, I hope we can talk. ❤️</p>
+          <div style="font-size:1.8rem">🌷 💌 🌷</div>
+        </div>
+      </div>
+    </section>
 
     <footer>Made with a little extra <span>♥</span> for Radhimaa.</footer>
+
     <div id="toast" role="status" aria-live="polite">A little flower for you, Radhimaa 🌸</div>
   </main>
 
-  <div class="final-screen" id="finalSurprise" role="dialog" aria-modal="true" aria-labelledby="finalTitle">
+  <!-- FINAL SURPRISE OVERLAY -->
+  <div class="final-screen" id="finalSurprise" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="finalTitle">
     <div class="final-card">
-      <div class="final-hearts">🌹 💗 🌷</div><div class="section-label">one last little thing</div>
+      <div class="final-hearts">🌹 💗 🌷</div>
+      <div class="section-label">one last little thing</div>
       <h2 id="finalTitle">You are a forever kind of friend.</h2>
       <p>Radhimaa, I hope this garden reminds you that you are appreciated on the big days and the completely ordinary ones, too. Wherever life grows from here, I am cheering for you. Keep blooming, bestie. ♡</p>
-      <div class="final-hearts">✨ 🦋 ✨</div><button class="btn" id="closeFinal">Keep this garden close 🌸</button>
+      <div class="final-hearts">✨ 🦋 ✨</div>
+      <button class="btn" id="closeFinal" type="button">Keep this garden close 🌸</button>
     </div>
   </div>
-  
 
-<script>
-(function () {
-  function setupPassword() {
-    const gate = document.getElementById("passwordGate");
-    const form = document.getElementById("passwordForm");
-    const input = document.getElementById("sitePassword");
-    const error = document.getElementById("gateError");
+  <!-- WEBSITE JAVASCRIPT -->
+  <script>
+  (function () {
+    function setupWebsite() {
+      const gate = document.getElementById("passwordGate");
+      const form = document.getElementById("passwordForm");
+      const input = document.getElementById("sitePassword");
+      const error = document.getElementById("gateError");
 
-    if (!gate || !form || !input || !error) {
-      console.error("Password gate elements are missing.");
-      return;
+      // PASSWORD
+      if (gate && form && input && error) {
+        form.addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          if (input.value.trim() === "rosebud") {
+            error.textContent = "";
+            gate.classList.add("unlocked");
+            document.body.style.overflow = "";
+          } else {
+            error.textContent = "Incorrect password. Please try again. 💗";
+            input.value = "";
+            input.focus();
+          }
+        });
+      }
+
+      // FINAL SURPRISE
+      const openButton = document.getElementById("finalSurpriseButton");
+      const finalScreen = document.getElementById("finalSurprise");
+      const closeButton = document.getElementById("closeFinal");
+
+      function openSurprise() {
+        if (!finalScreen) return;
+
+        finalScreen.style.setProperty("display", "flex", "important");
+        finalScreen.style.setProperty("visibility", "visible", "important");
+        finalScreen.style.setProperty("opacity", "1", "important");
+        finalScreen.style.setProperty("pointer-events", "auto", "important");
+        finalScreen.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeSurprise() {
+        if (!finalScreen) return;
+
+        finalScreen.style.setProperty("display", "none", "important");
+        finalScreen.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+      }
+
+      if (finalScreen) {
+        finalScreen.style.setProperty("display", "none", "important");
+        finalScreen.setAttribute("aria-hidden", "true");
+      }
+
+      if (openButton) {
+        openButton.addEventListener("click", openSurprise);
+      }
+
+      if (closeButton) {
+        closeButton.addEventListener("click", closeSurprise);
+      }
+
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") closeSurprise();
+      });
+
+      // SORRY BUTTON
+      const sorryButton = document.getElementById("sorryButton");
+      const apologyMessage = document.getElementById("apologyMessage");
+
+      if (sorryButton && apologyMessage) {
+        sorryButton.addEventListener("click", function () {
+          apologyMessage.hidden = false;
+          apologyMessage.style.display = "block";
+          apologyMessage.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+          });
+        });
+      }
+
+      // UNFOLD LETTER
+      const revealButton = document.getElementById("revealBtn");
+      const letterText = document.getElementById("letterText");
+
+      if (revealButton && letterText) {
+        revealButton.addEventListener("click", function () {
+          letterText.classList.toggle("show");
+          letterText.style.display = "block";
+          revealButton.textContent =
+            letterText.classList.contains("show")
+              ? "Fold the letter 💌"
+              : "Unfold the letter 💌";
+
+          if (!letterText.classList.contains("show")) {
+            letterText.style.display = "";
+          }
+        });
+      }
+
+      // FLOWER COMPLIMENTS
+      document.querySelectorAll(".bloom").forEach(function (button) {
+        button.addEventListener("click", function () {
+          const compliment = button.querySelector("small");
+          if (!compliment) return;
+
+          compliment.hidden = !compliment.hidden;
+          button.classList.toggle("bloomed", !compliment.hidden);
+        });
+      });
+
+      // HAPPY JAR
+      const drawButton = document.getElementById("drawMessage");
+      const jarMessage = document.getElementById("jarMessage");
+      const jarEmoji = document.getElementById("jarEmoji");
+
+      const happyMessages = [
+        "You deserve good things, even on difficult days. 🌷",
+        "Someone is lucky to have you in their life. 💗",
+        "You don't need to be perfect to be wonderful. 🦋",
+        "Take a breath. You are doing better than you think. 🌸",
+        "May something lovely surprise you today. ✨",
+        "Your smile can brighten an ordinary day. ☀️"
+      ];
+
+      let previousMessage = -1;
+
+      if (drawButton && jarMessage) {
+        drawButton.addEventListener("click", function () {
+          let index;
+
+          do {
+            index = Math.floor(Math.random() * happyMessages.length);
+          } while (happyMessages.length > 1 && index === previousMessage);
+
+          previousMessage = index;
+          jarMessage.textContent = happyMessages[index];
+
+          if (jarEmoji) jarEmoji.textContent = "💗";
+        });
+      }
+
+      // SEND FLOWERS
+      const petalButton = document.getElementById("petalBtn");
+      const petalsContainer = document.getElementById("petals");
+      const toast = document.getElementById("toast");
+
+      if (petalButton) {
+        petalButton.addEventListener("click", function () {
+          const photo = document.getElementById("photoSurprise");
+
+          if (photo) {
+            photo.style.display = "block";
+            photo.scrollIntoView({ behavior: "smooth", block: "center" });
+          }
+
+          if (toast) {
+            toast.textContent = "A little flower for you, Radhimaa 🌸";
+            toast.classList.add("show");
+            window.setTimeout(function () {
+              toast.classList.remove("show");
+            }, 2500);
+          }
+
+          if (petalsContainer) {
+            const flowers = ["🌸", "🌷", "🌹", "💗", "🌼"];
+
+            for (let i = 0; i < 18; i++) {
+              const petal = document.createElement("span");
+              petal.textContent = flowers[Math.floor(Math.random() * flowers.length)];
+              petal.setAttribute("aria-hidden", "true");
+
+              petal.style.position = "fixed";
+              petal.style.left = Math.random() * 100 + "vw";
+              petal.style.top = "-40px";
+              petal.style.zIndex = "9999";
+              petal.style.pointerEvents = "none";
+              petal.style.fontSize = (18 + Math.random() * 18) + "px";
+              petal.style.animation = "gardenPetalFall " +
+                (3 + Math.random() * 3) + "s linear forwards";
+
+              petalsContainer.appendChild(petal);
+
+              window.setTimeout(function () {
+                petal.remove();
+              }, 6500);
+            }
+          }
+        });
+      }
+
+      // ANIMATED ENVELOPE NOTE
+      const envelopeButton = document.getElementById("envelopeButton");
+      const typedLetter = document.getElementById("typedLetter");
+      const envelopeHint = document.getElementById("envelopeHint");
+
+      if (envelopeButton && typedLetter) {
+        let typingTimer = null;
+        let hasOpened = false;
+
+        envelopeButton.addEventListener("click", function () {
+          if (hasOpened) {
+            hasOpened = false;
+            if (typingTimer) window.clearInterval(typingTimer);
+            typedLetter.textContent = "";
+            envelopeButton.classList.remove("open");
+            if (envelopeHint) {
+              envelopeHint.textContent = "A little note is tucked inside ♡";
+            }
+            return;
+          }
+
+          hasOpened = true;
+          envelopeButton.classList.add("open");
+
+          if (envelopeHint) {
+            envelopeHint.textContent = "A little message, just for you ♡";
+          }
+
+          const message =
+            "Dear Radhimaa, never forget how special you are. Thank you for the smiles, the memories, and the little moments that make friendship beautiful. Keep blooming, bestie! 🌹💗";
+
+          let position = 0;
+          typedLetter.textContent = "";
+
+          typingTimer = window.setInterval(function () {
+            typedLetter.textContent += message.charAt(position);
+            position++;
+
+            if (position >= message.length) {
+              window.clearInterval(typingTimer);
+            }
+          }, 45);
+        });
+      }
     }
 
-    form.addEventListener("submit", function (event) {
-      event.preventDefault();
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", setupWebsite);
+    } else {
+      setupWebsite();
+    }
+  })();
+  </script>
 
-      if (input.value.trim() === "rosebud") {
-        error.textContent = "";
-        gate.classList.add("unlocked");
-      } else {
-        error.textContent =
-          "Incorrect password. Please try again. 💗";
-        input.value = "";
-        input.focus();
-      }
-    });
-  }
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", setupPassword);
-  } else {
-    setupPassword();
-  }
-})();
-</script>
-<script src="script.js"></script>
+  <!-- Keep your existing script if it contains other website features. -->
+  <script src="script.js"></script>
 </body>
 </html>
