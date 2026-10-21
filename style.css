@@ -1444,3 +1444,59 @@ footer span {
 .scratch-card.scratched .scratch-hint {
   display: none !important;
 }
+
+/* =====================================
+   FLOATING FLOWERS — FIX
+   ===================================== */
+
+#petals,
+.petals {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
+  z-index: 9990 !important;
+}
+
+#petals .petal,
+.petals .petal {
+  position: fixed !important;
+  top: -45px;
+  display: block;
+  user-select: none;
+  pointer-events: none;
+  will-change: transform, opacity;
+  animation-name: floatingPetalFall;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+}
+
+@keyframes floatingPetalFall {
+  0% {
+    transform: translate3d(0, -5vh, 0) rotate(0deg);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 0.9;
+  }
+
+  50% {
+    transform: translate3d(45px, 50vh, 0) rotate(180deg);
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: translate3d(-35px, 110vh, 0) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #petals .petal,
+  .petals .petal {
+    animation-duration: 12s !important;
+  }
+}
