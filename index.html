@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fff5f7">
+  <title>A Little Garden of Love</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="passwordGate" role="dialog" aria-modal="true" aria-labelledby="gateTitle">
+    <form class="gate-card" id="passwordForm">
+      <div class="gate-flowers" aria-hidden="true">🌹 💌 🌷</div>
+      <div class="section-label">a little secret garden</div>
+      <h2 id="gateTitle">Just for you, Radhimaa</h2>
+      <p>This little garden is waiting for its special person. 🌸<br>Enter the secret password to come inside.</p>
+      <label for="sitePassword">Your secret password</label>
+      <input id="sitePassword" type="password" placeholder="Type your password…" autocomplete="off" required autofocus>
+      <div class="gate-error" id="gateError" aria-live="polite"></div>
+      <button class="btn gate-btn" type="submit">Unlock my garden ✨</button>
+      <div class="gate-foot">MADE WITH LOVE ♡</div>
+    </form>
+  </div>
+
+  <main id="app">
+    <nav class="garden-nav" aria-label="Garden sections">
+      <a href="#home">Home 🌷</a><a href="#little-things">Reminders</a><a href="#letter">Letter 💌</a>
+      <a href="#little-envelope">Open envelope</a><a href="#blooming-compliments">Flowers</a><a href="#photo-scrapbook">Scrapbook</a>
+      <a href="#happy-jar">Happy jar</a><a href="#friendship-music">Music 🎶</a><a href="#finalSurpriseButton">Final surprise ✨</a>
+    </nav>
+    <div class="petals" id="petals" aria-hidden="true"></div>
+
+    <header class="hero" id="home">
+      <div class="hero-inner">
+        <div class="eyebrow">a little something, just for you</div>
+        <div class="flower-crown" aria-hidden="true">🌹 ✿ 🌷</div>
+        <h1>For <em>Radhimaa,</em><br>my favorite human.</h1>
+        <p class="subtitle">Some people make ordinary days feel a little more magical. This tiny corner of the internet is made especially for you, Radhimaa. ♡</p>
+        <button class="btn" id="openLetter">Open your little surprise ✨</button>
+      </div>
+      <div class="scroll-note">a garden of kind words · scroll gently ↓</div>
+    </header>
+
+    <section id="little-things">
+      <div class="section-inner">
+        <div class="section-label">the little things</div>
+        <h2 class="section-title">Things I hope you never forget</h2>
+        <p class="section-desc">A few reminders, wrapped up like flowers, for the days when you need them most.</p>
+        <div class="memory-grid">
+          <article class="memory"><div class="icon">🌷</div><h3>You matter.</h3><p>Your presence makes a difference in ways you might not even notice. The world is softer with you in it.</p></article>
+          <article class="memory"><div class="icon">🦋</div><h3>You can bloom.</h3><p>You don't have to have everything figured out. Even flowers take their own sweet time to open.</p></article>
+          <article class="memory"><div class="icon">💌</div><h3>You're appreciated.</h3><p>For your laughter, your kindness, your chaos, and all the little things that make you wonderfully you.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="letter">
+      <div class="section-inner">
+        <div class="section-label">sealed with a smile</div>
+        <h2 class="section-title">A note for Radhimaa</h2>
+        <p class="section-desc">No special occasion needed. Some people deserve to be reminded that they're special, just because.</p>
+        <div class="letter-wrap">
+          <div class="hidden-letter" id="letterText">
+            <p>Hey Radhimaa, 🌹</p>
+            <p>I just wanted to make something beautiful for someone who deserves beautiful things. Thank you for being the kind of person who can make a random day better, a silly moment funnier, and a tough day feel a little less heavy.</p>
+            <p>Life won't always be a garden full of roses — there will be rainy days, messy days, and days when everything feels a bit too much. But I hope you always remember how much goodness you carry with you. I hope you keep laughing loudly, dreaming wildly, and being unapologetically yourself.</p>
+            <p>And no matter how busy life gets or how much things change, I'm really glad our paths crossed. Here's a little reminder that you're valued, you're loved as a friend, and you're one of a kind. 💗</p>
+            <p>Keep blooming, okay? The world needs your kind of magic.</p>
+            <p class="signoff">Your bestie, always ♡</p>
+          </div>
+          <div class="reveal" id="revealPrompt"><button class="btn" id="revealBtn">Unfold the letter 💌</button></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="garden">
+      <div class="section-inner">
+        <div class="section-label">a wish for you</div>
+        <div class="bouquet" aria-hidden="true">🌸 🌹 🌼 🌷</div>
+        <p class="garden-quote">“May life give you a thousand little reasons to smile, and may you never forget how much light you bring to the people around you.”</p>
+        <p class="tiny">sending you sunshine, petals & good vibes</p>
+        <button class="btn" id="petalBtn">Send a shower of flowers 🌷</button>
+        <div class="photo-surprise" id="photoSurprise" aria-live="polite">
+          <div class="photo-heart"><img src="radhimaa.png" alt="Radhimaa, surrounded by love and roses" loading="lazy"></div>
+          <h3>For my favourite Radhimaa 🌹</h3><p>You deserve all the roses in the world. Thank you for being you, bestie. ❤️</p>
+        </div>
+        <button class="btn final-trigger" id="finalSurpriseButton">Open your secret final surprise 💗</button>
+      </div>
+    </section>
+
+    <section class="feature-section" id="little-envelope">
+      <div class="feature-inner">
+        <div class="section-label">a letter, just for you</div><h2 class="feature-title">A tiny envelope of love</h2>
+        <p class="feature-copy">Tap the envelope to open it. A little note will appear, one word at a time.</p>
+        <div class="envelope-stage"><button class="envelope" id="envelopeButton" aria-label="Open the animated letter"></button></div>
+        <p class="envelope-note" id="envelopeHint">A little note is tucked inside ♡</p><div class="typed-letter" id="typedLetter" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="feature-section" id="blooming-compliments">
+      <div class="feature-inner">
+        <div class="section-label">little blooms for you</div><h2 class="feature-title">Pick a flower, find a compliment</h2>
+        <p class="feature-copy">Every flower has a reminder waiting just for you. Tap each one to let it bloom.</p>
+        <div class="compliment-garden" id="complimentGarden">
+          <button class="bloom"><span>🌷</span>Bloom one<small hidden>You make ordinary moments feel special. 💗</small></button>
+          <button class="bloom"><span>🌼</span>Bloom two<small hidden>Your kindness stays with people. ✨</small></button>
+          <button class="bloom"><span>🌹</span>Bloom three<small hidden>You deserve the same care you give others. 🌸</small></button>
+          <button class="bloom"><span>🌸</span>Bloom four<small hidden>Your laugh is a little kind of sunshine. ☀️</small></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="feature-section" id="photo-scrapbook">
+      <div class="feature-inner">
+        <div class="section-label">little moments, kept close</div><h2 class="feature-title">Our tiny scrapbook</h2>
+        <p class="feature-copy">A little space for favorite memories. Put your photos in this folder and update the image filenames and captions in index.html.</p>
+        <div class="scrapbook">
+          <figure class="scrap-frame" style="--tilt:-2deg"><img src="radhimaa.png" alt="Radhimaa in the friendship scrapbook" loading="lazy"><figcaption>Someone worth celebrating ♡</figcaption></figure>
+          <figure class="scrap-frame" style="--tilt:2deg"><div class="scrap-placeholder">🌷<br>Memory no. 2<br><small>Add another photo in index.html</small></div><figcaption>A day to remember</figcaption></figure>
+          <figure class="scrap-frame" style="--tilt:-1deg"><div class="scrap-placeholder">🦋<br>Memory no. 3<br><small>Add another photo in index.html</small></div><figcaption>More laughs, always</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="feature-section" id="happy-jar">
+      <div class="feature-inner">
+        <div class="section-label">a little joy, on demand</div><h2 class="feature-title">The happy-message jar</h2>
+        <p class="feature-copy">Whenever the day feels heavy, pick a tiny message from the jar.</p>
+        <div class="feature-card jar"><div class="jar-emoji" id="jarEmoji">🫙</div><div class="jar-message" id="jarMessage" aria-live="polite">There is a little happiness waiting inside.</div><button class="btn" id="drawMessage">Pick a happy thought ✨</button></div>
+      </div>
+    </section>
+
+    <section class="feature-section" id="friendship-music">
+      <div class="feature-inner">
+        <div class="section-label">a soft soundtrack</div><h2 class="feature-title">A song for this little garden</h2>
+        <p class="feature-copy">Add an audio file named <strong>friendship-song.mp3</strong> beside index.html to use your own song.</p>
+        <div class="feature-card music-player"><div class="music-emoji">🎶 🌸 🎶</div><p>A soundtrack for your friendship memories.</p><audio id="friendshipAudio" controls preload="none"><source src="friendship-song.mp3" type="audio/mpeg">Your browser does not support audio playback.</audio><p class="tiny">Optional player · your song can be changed later</p></div>
+      </div>
+    </section>
+
+    <footer>Made with a little extra <span>♥</span> for Radhimaa.</footer>
+    <div id="toast" role="status" aria-live="polite">A little flower for you, Radhimaa 🌸</div>
+  </main>
+
+  <div class="final-screen" id="finalSurprise" role="dialog" aria-modal="true" aria-labelledby="finalTitle">
+    <div class="final-card">
+      <div class="final-hearts">🌹 💗 🌷</div><div class="section-label">one last little thing</div>
+      <h2 id="finalTitle">You are a forever kind of friend.</h2>
+      <p>Radhimaa, I hope this garden reminds you that you are appreciated on the big days and the completely ordinary ones, too. Wherever life grows from here, I am cheering for you. Keep blooming, bestie. ♡</p>
+      <div class="final-hearts">✨ 🦋 ✨</div><button class="btn" id="closeFinal">Keep this garden close 🌸</button>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
