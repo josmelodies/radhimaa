@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fff5f7">
+  <title>A Little Garden of Love 🌹</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main id="app">
+    <div class="petals" id="petals" aria-hidden="true"></div>
+
+    <header class="hero" id="home">
+      <div class="hero-inner">
+        <div class="eyebrow">A little something, just for you</div>
+        <div class="flower-crown">🌹 ✿ 🌷</div>
+        <h1>For <em>Radhimaa,</em><br>my favorite human.</h1>
+        <p class="subtitle">
+          Some people make ordinary days feel magical.
+          This tiny corner of the internet is made especially for you. ♡
+        </p>
+        <button class="btn" id="openLetter">Open your little surprise ✨</button>
+      </div>
+      <div class="scroll-note">A garden of kind words · scroll gently ↓</div>
+    </header>
+
+    <section>
+      <div class="section-inner">
+        <div class="section-label">The little things</div>
+        <h2 class="section-title">Things I hope you never forget</h2>
+        <p class="section-desc">A few reminders, wrapped up like flowers, for the days when you need them most.</p>
+
+        <div class="memory-grid">
+          <article class="memory">
+            <div class="icon">🌷</div>
+            <h3>You matter.</h3>
+            <p>Your presence makes a difference in ways you might not even notice. The world is softer with you in it.</p>
+          </article>
+          <article class="memory">
+            <div class="icon">🦋</div>
+            <h3>You can bloom.</h3>
+            <p>You don't have to have everything figured out. Even flowers take their own sweet time to open.</p>
+          </article>
+          <article class="memory">
+            <div class="icon">💌</div>
+            <h3>You're appreciated.</h3>
+            <p>For your laughter, your kindness, your chaos, and all the little things that make you wonderfully you.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="letter">
+      <div class="section-inner">
+        <div class="section-label">Sealed with a smile</div>
+        <h2 class="section-title">A note for Radhimaa</h2>
+        <p class="section-desc">No special occasion needed. Some people deserve to be reminded that they're special, just because.</p>
+
+        <div class="letter-wrap">
+          <div class="hidden-letter" id="letterText">
+            <p>Hey Radhimaa, 🌹</p>
+            <p>I just wanted to make something beautiful for someone who deserves beautiful things. Thank you for being the kind of person who can make a random day better, a silly moment funnier, and a tough day feel a little less heavy.</p>
+            <p>Life won't always be a garden full of roses. There will be rainy days, messy days, and days when everything feels a bit too much. But I hope you always remember how much goodness you carry with you.</p>
+            <p>I'm really glad our paths crossed. You're valued, you're loved as a friend, and you're one of a kind. 💗</p>
+            <p>Keep blooming, okay? The world needs your kind of magic.</p>
+            <p class="signoff">Your bestie, always ♡</p>
+          </div>
+          <div class="reveal" id="revealPrompt">
+            <button class="btn" id="revealBtn">Unfold the letter 💌</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="garden">
+      <div class="section-inner">
+        <div class="section-label">A wish for you</div>
+        <div class="bouquet" aria-hidden="true">🌸 🌹 🌼 🌷</div>
+        <p class="garden-quote">“May life give you a thousand little reasons to smile, and may you never forget how much light you bring to the people around you.”</p>
+        <p class="tiny">Sending you sunshine, petals & good vibes</p>
+
+        <button class="btn flower-btn" id="petalBtn">Send a shower of flowers 🌷</button>
+
+        <div class="photo-surprise" id="photoSurprise" aria-live="polite">
+          <div class="photo-heart">
+            <img src="radhimaa.webp" alt="Radhimaa in her beautiful purple saree">
+          </div>
+          <h3>For my favourite Radhimaa 🌹</h3>
+          <p>You deserve all the roses in the world. Thank you for being you, bestie. ❤️</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>Made with a little extra <span>♥</span> for Radhimaa.</footer>
+    <div id="toast" role="status" aria-live="polite"></div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
