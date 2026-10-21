@@ -1382,3 +1382,65 @@ footer span {
     aspect-ratio: 3 / 4;
   }
 }
+
+/* ===== SCRATCH-TO-REVEAL PHOTO FIX ===== */
+
+.scratch-card {
+  position: relative !important;
+  display: block !important;
+  width: 100% !important;
+  aspect-ratio: 4 / 5;
+  overflow: hidden !important;
+  isolation: isolate;
+  border-radius: 14px;
+  background: #c56b89;
+  touch-action: pan-y;
+}
+
+.scratch-card img {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+  z-index: 0 !important;
+}
+
+.scratch-card .scratch-overlay {
+  position: absolute !important;
+  inset: 0 !important;
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 5 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  cursor: crosshair;
+  touch-action: none;
+  border-radius: 14px;
+}
+
+.scratch-card .scratch-hint {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 6 !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 0 2px 8px #572039;
+  pointer-events: none;
+}
+
+.scratch-card.scratched .scratch-overlay {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transition: opacity 0.5s ease;
+}
+
+.scratch-card.scratched .scratch-hint {
+  display: none !important;
+}
