@@ -1,501 +1,794 @@
 
-/* ==========================================
-   A LITTLE GARDEN OF LOVE
-   Complete updated script.js
-   ========================================== */
-
 document.addEventListener("DOMContentLoaded", () => {
-  const $ = (selector, root = document) => root.querySelector(selector);
-  const $$ = (selector, root = document) => [
-    ...root.querySelectorAll(selector)
-  ];
+  "use strict";
 
-  // Safely attach an event only when an element exists.
-  function on(selector, eventName, callback) {
-    const element = $(selector);
-    if (element) element.addEventListener(eventName, callback);
-    return element;
+  // ==========================================
+  // HELPERS
+  // ==========================================
+
+  const $ = (selector, parent = document) =>
+    parent.querySelector(selector);
+
+  const $$ = (selector, parent = document) =>
+    Array.from(parent.querySelectorAll(selector));
+
+  function showElement(element) {
+    if (element) element.hidden = false;
+  }
+
+  function hideElement(element) {
+    if (element) element.hidden = true;
+  }
+
+  function randomItem(items) {
+    return items[Math.floor(Math.random() * items.length)];
   }
 
   // ==========================================
   // 1. PASSWORD GATE
+  // Password: rosebud
   // ==========================================
 
-  const gardenPassword = "rosebud";
   const passwordGate = $("#passwordGate");
   const passwordForm = $("#passwordForm");
   const passwordInput = $("#sitePassword");
-  const passwordError = $("#gateError");
+  const gateError = $("#gateError");
+  const app = $("#app");
 
-  if (passwordForm && passwordInput && passwordGate && passwordError) {
-    passwordForm.addEventListener("submit", event => {
-      event.preventDefault();
+  function unlockGarden() {
+    if (passwordGate) passwordGate.style.display = "none";
 
-      if (passwordInput.value.trim().toLowerCase() === gardenPassword) {
-        passwordError.textContent = "";
-        passwordGate.classList.add("unlocked");
-        passwordGate.setAttribute("aria-hidden", "true");
-        document.body.classList.add("garden-unlocked");
+    if (app) {
+      app.style.display = "";
+      app.classList.add("garden-unlocked");
+    }
 
-        window.setTimeout(() => {
-          const envelope = $("#little-envelope");
+    document.body.classList.add("unlocked");
 
-          if (envelope) {
-            envelope.scrollIntoView({
-              behavior: "smooth",
-              block: "center"
-            });
+    // Redraw scratch coatings after the page becomes visible.
+    window.dispatchEvent(new Event("resize"));
+  }
+
+  if (passwordGate) {
+    if (app) app.style.display = "none";
+
+    if (passwordForm) {
+      passwordForm.addEventListener("submit", event => {
+        event.preventDefault();
+
+        const password = passwordInput
+          ? passwordInput.value.trim()
+          : "";
+
+        if (password === "rosebud") {
+          if (gateError) gateError.textContent = "";
+          unlockGarden();
+        } else {
+          if (gateError) {
+            gateError.textContent =
+              "That isn't the password. Try again, lovely. 🌷";
           }
-        }, 500);
-      } else {
-        passwordError.textContent =
-          "That password didn't match. Try: rosebud 💗";
 
-        passwordInput.value = "";
-        passwordInput.focus();
-
-        if (typeof passwordForm.animate === "function") {
-          passwordForm.animate(
-            [
-              { transform: "translateX(0)" },
-              { transform: "translateX(-7px)" },
-              { transform: "translateX(7px)" },
-              { transform: "translateX(0)" }
-            ],
-            { duration: 260 }
-          );
+          if (passwordInput) {
+            passwordInput.value = "";
+            passwordInput.focus();
+          }
         }
-      }
-    });
+      });
+    }
+  } else if (app) {
+    app.style.display = "";
   }
 
   // ==========================================
   // 2. FALLING PETALS
   // ==========================================
 
-  const petalLayer = $("#petals");
-  const flowers = ["🌸", "🌹", "🌷", "✿", "❀", "♡"];
+  const petalsContainer = $("#petals");
 
-  function randomFlower() {
-    return flowers[Math.floor(Math.random() * flowers.length)];
+  function createPetal() {
+    if (!petalsContainer) return;
+
+    const petal = document.createElement("span");
+    const symbols = ["🌸", "🌷", "🌹", "💗", "✿"];
+
+    petal.className = "petal";
+    petal.textContent = randomItem(symbols);
+
+    petal.style.left = Math.random() * 100 + "vw";
+    petal.style.animationDuration = 6 + Math.random() * 8 + "s";
+    petal.style.animationDelay = Math.random() * 2 + "s";
+    petal.style.fontSize = 12 + Math.random() * 16 + "px";
+    petal.style.opacity = String(0.4 + Math.random() * 0.6);
+
+    petalsContainer.appendChild(petal);
+
+    const duration = parseFloat(petal.style.animationDuration) || 10;
+
+    window.setTimeout(() => petal.remove(), (duration + 3) * 1000);
   }
 
-  if (petalLayer) {
-    for (let i = 0; i < 22; i++) {
-      const petal = document.createElement("span");
+  let petalInterval = null;
 
-      petal.className = "petal";
-      petal.textContent = randomFlower();
+  function startPetals() {
+    if (!petalsContainer || petalInterval) return;
 
-      petal.style.setProperty("--x", Math.random() * 100 + "%");
-      petal.style.setProperty("--size", 12 + Math.random() * 17 + "px");
-      petal.style.setProperty(
-        "--opacity",
-        (0.28 + Math.random() * 0.5).toFixed(2)
-      );
-      petal.style.setProperty(
-        "--duration",
-        12 + Math.random() * 17 + "s"
-      );
-      petal.style.setProperty("--delay", -Math.random() * 26 + "s");
-
-      petalLayer.appendChild(petal);
+    for (let i = 0; i < 12; i++) {
+      window.setTimeout(createPetal, i * 180);
     }
+
+    petalInterval = window.setInterval(createPetal, 850);
+  }
+
+  startPetals();
+
+  // ==========================================
+  // 3. REVEAL LETTER
+  // ==========================================
+
+  const revealButton = $("#revealBtn");
+  const letterText = $("#letterText");
+  const revealPrompt = $("#revealPrompt");
+
+  if (revealButton && letterText) {
+    revealButton.addEventListener("click", () => {
+      const isVisible = letterText.style.display !== "none";
+
+      if (isVisible) {
+        letterText.style.display = "none";
+        revealButton.textContent = "Open My Letter 💌";
+      } else {
+        letterText.style.display = "block";
+        letterText.classList.remove("hidden-letter");
+        letterText.classList.add("letter-open");
+        revealButton.textContent = "Close My Letter ♡";
+
+        if (revealPrompt) {
+          revealPrompt.textContent =
+            "A little message, written especially for you. 💗";
+        }
+
+        letterText.scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+      }
+    });
   }
 
   // ==========================================
-  // 3. LETTER REVEAL
+  // 4. ROSE SHOWER
   // ==========================================
 
-  function showLetter() {
-    const letter = $("#letterText");
-    const prompt = $("#revealPrompt");
-    const letterSection = $("#letter");
+  const petalButton = $("#petalBtn");
+  const photoSurprise = $("#photoSurprise");
 
-    if (!letter) return;
+  function launchRoseShower() {
+    const symbols = ["🌹", "🌸", "🌷", "💗", "💐", "✨"];
+    const count = 45;
 
-    letter.classList.add("show");
-    letter.style.display = "block";
+    for (let i = 0; i < count; i++) {
+      const rose = document.createElement("span");
 
-    if (prompt) prompt.style.display = "none";
+      rose.textContent = randomItem(symbols);
 
-    if (letterSection) {
-      letterSection.scrollIntoView({
+      Object.assign(rose.style, {
+        position: "fixed",
+        zIndex: "9999",
+        top: "-45px",
+        left: Math.random() * 100 + "vw",
+        fontSize: 18 + Math.random() * 20 + "px",
+        pointerEvents: "none",
+        willChange: "transform",
+        transition: "transform 3s ease-in, opacity 3s ease-in",
+        opacity: "1"
+      });
+
+      document.body.appendChild(rose);
+
+      const drift = (Math.random() - 0.5) * 240;
+      const fallTime = 2200 + Math.random() * 2200;
+
+      window.setTimeout(() => {
+        rose.style.transform =
+          `translate(${drift}px, ${window.innerHeight + 100}px) rotate(${Math.random() * 700}deg)`;
+        rose.style.opacity = "0";
+      }, 50 + Math.random() * 300);
+
+      window.setTimeout(() => rose.remove(), fallTime + 500);
+    }
+
+    if (photoSurprise) {
+      photoSurprise.style.display = "block";
+      photoSurprise.classList.add("surprise-visible");
+
+      photoSurprise.scrollIntoView({
         behavior: "smooth",
         block: "center"
       });
     }
   }
 
-  on("#revealBtn", "click", showLetter);
-  on("#openLetter", "click", showLetter);
+  if (petalButton) {
+    petalButton.addEventListener("click", launchRoseShower);
+  }
 
   // ==========================================
-  // 4. ROSE SHOWER AND PHOTO REVEAL
+  // 5. ENVELOPE AND TYPING LETTER
   // ==========================================
 
-  let toastTimer;
+  const envelopeButton = $("#envelopeButton");
+  const typedLetter = $("#typedLetter");
+  const envelopeHint = $("#envelopeHint");
 
-  on("#petalBtn", "click", () => {
-    if (petalLayer) {
-      for (let i = 0; i < 30; i++) {
-        const petal = document.createElement("span");
+  const envelopeMessage =
+    "Dear Radhimaa, 💗\n\n" +
+    "I hope you always remember how special you are. " +
+    "May your days be filled with smiles, your heart with " +
+    "peace, and your life with beautiful memories.\n\n" +
+    "Whenever you need a little happiness, remember that " +
+    "you deserve kindness, laughter, and all the lovely " +
+    "things this world has to offer. 🌷\n\n" +
+    "Keep blooming, keep smiling, and always be yourself.\n\n" +
+    "Sending you a little hug. 🫂\n\n" +
+    "With love ♡";
 
-        petal.className = "petal";
-        petal.textContent = randomFlower();
+  let typingTimer = null;
+  let envelopeOpen = false;
 
-        petal.style.setProperty("--x", Math.random() * 100 + "%");
-        petal.style.setProperty("--size", 16 + Math.random() * 20 + "px");
-        petal.style.setProperty("--opacity", ".85");
-        petal.style.setProperty(
-          "--duration",
-          4 + Math.random() * 5 + "s"
-        );
-        petal.style.setProperty(
-          "--delay",
-          Math.random() * 1.2 + "s"
-        );
+  function stopTyping() {
+    if (typingTimer !== null) {
+      window.clearTimeout(typingTimer);
+      typingTimer = null;
+    }
+  }
 
-        petalLayer.appendChild(petal);
-        window.setTimeout(() => petal.remove(), 11000);
+  function typeMessage(message, element, index = 0) {
+    if (!element) return;
+
+    if (index === 0) element.textContent = "";
+
+    if (index >= message.length) {
+      typingTimer = null;
+      return;
+    }
+
+    element.textContent += message[index];
+
+    const delay = message[index] === "\n" ? 140 : 32;
+
+    typingTimer = window.setTimeout(() => {
+      typeMessage(message, element, index + 1);
+    }, delay);
+  }
+
+  if (envelopeButton) {
+    envelopeButton.addEventListener("click", () => {
+      envelopeOpen = !envelopeOpen;
+
+      envelopeButton.classList.toggle("open", envelopeOpen);
+      envelopeButton.setAttribute(
+        "aria-expanded",
+        String(envelopeOpen)
+      );
+
+      if (envelopeHint) {
+        envelopeHint.textContent = envelopeOpen
+          ? "A little message, just for you ♡"
+          : "The letter is tucked safely inside ♡";
       }
-    }
 
-    // Create a burst of roses and hearts.
-    for (let i = 0; i < 18; i++) {
-      const rose = document.createElement("span");
+      if (typedLetter) {
+        if (envelopeOpen) {
+          typedLetter.style.display = "block";
+          typedLetter.classList.add("typed-letter-open");
 
-      rose.className = "rose-burst";
-      rose.textContent = ["🌹", "🌹", "💗", "🌸"][
-        Math.floor(Math.random() * 4)
-      ];
+          stopTyping();
+          typeMessage(envelopeMessage, typedLetter);
 
-      rose.style.setProperty("--dx", Math.random() * 90 - 45 + "vw");
-      rose.style.setProperty("--dy", Math.random() * 80 - 40 + "vh");
-
-      document.body.appendChild(rose);
-      window.setTimeout(() => rose.remove(), 2000);
-    }
-
-    // Reveal the surprise photo.
-    const photo = $("#photoSurprise");
-
-    if (photo) {
-      photo.classList.remove("show");
-      photo.style.display = "block";
-
-      void photo.offsetWidth;
-      photo.classList.add("show");
-
-      window.setTimeout(() => {
-        photo.scrollIntoView({
-          behavior: "smooth",
-          block: "center"
-        });
-      }, 250);
-    }
-
-    // Show a temporary notification.
-    const toast = $("#toast");
-
-    if (toast) {
-      toast.textContent = "A rose shower just for you, Radhimaa 🌹";
-      toast.classList.add("show");
-
-      window.clearTimeout(toastTimer);
-
-      toastTimer = window.setTimeout(() => {
-        toast.classList.remove("show");
-      }, 3000);
-    }
-  });
-
-  // ==========================================
-  // 5. ANIMATED ENVELOPE AND TYPED NOTE
-  // ==========================================
-
-  const note =
-    "Hey Radhimaa, 🌷\n\n" +
-    "This little garden is a reminder that you matter, your smile " +
-    "makes a difference, and you deserve gentle days, loud laughter, " +
-    "and beautiful surprises. Thank you for being you and for making " +
-    "friendship feel like a place to bloom.\n\n" +
-    "Keep blooming, okay? I am always cheering for you. 💗\n\n" +
-    "Your bestie, always ♡";
-
-  let typingTimer;
-
-  on("#envelopeButton", "click", function () {
-    this.classList.toggle("open");
-
-    const isOpen = this.classList.contains("open");
-    const hint = $("#envelopeHint");
-    const target = $("#typedLetter");
-
-    if (!target) return;
-
-    if (hint) {
-      hint.textContent = isOpen
-        ? "A note, written just for you 💌"
-        : "The letter is tucked safely inside ♡";
-    }
-
-    window.clearInterval(typingTimer);
-    target.textContent = "";
-
-    if (isOpen) {
-      let index = 0;
-
-      typingTimer = window.setInterval(() => {
-        target.textContent += note.charAt(index);
-        index++;
-
-        if (index >= note.length) {
-          window.clearInterval(typingTimer);
+          typedLetter.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+          });
+        } else {
+          stopTyping();
+          typedLetter.textContent = "";
+          typedLetter.style.display = "none";
+          typedLetter.classList.remove("typed-letter-open");
         }
-      }, 27);
-    }
-  });
+      }
+    });
+  }
 
   // ==========================================
   // 6. PICK A FLOWER, FIND A COMPLIMENT
-  // FIXED: compliments always appear on click
   // ==========================================
 
-  const flowerCompliments = [
-    "You have a beautiful heart, Radhimaa. 🌷",
-    "Your smile can brighten someone's darkest day. ☀️",
-    "You deserve all the happiness in the world. 💗",
-    "You make ordinary moments feel special. ✨",
-    "You are stronger than you sometimes realize. 🦋",
-    "Your kindness makes the world more beautiful. 🌸",
-    "You are one of a kind. Never forget that. 💖",
-    "You deserve love, laughter, and endless good memories. 🌹",
-    "You make the people around you feel appreciated. 💐",
-    "Never forget how special you are. 💌",
-    "You bring a little sunshine wherever you go. 🌻",
-    "You deserve all the wonderful things life has to offer. 💕"
-  ];
-
   $$(".bloom").forEach((flower, index) => {
-    // Find the compliment element inside this flower.
-    let message = flower.querySelector("small");
+    let compliment = $("small", flower);
 
-    // Create a compliment element if the HTML doesn't contain one.
-    if (!message) {
-      message = document.createElement("small");
-      flower.appendChild(message);
+    // Supply a fallback if a flower has no compliment.
+    if (!compliment) {
+      compliment = document.createElement("small");
+
+      const compliments = [
+        "You have a beautiful heart. 🌷",
+        "Your smile makes the world brighter. ☀️",
+        "You deserve all the happiness in the world. 💗",
+        "You make ordinary moments feel special. ✨",
+        "Your kindness is a beautiful gift. 🌸",
+        "You are wonderfully unique. 🦋",
+        "Keep blooming at your own pace. 🌻",
+        "You deserve so many beautiful memories. 💐"
+      ];
+
+      compliment.textContent =
+        compliments[index % compliments.length];
+
+      flower.appendChild(compliment);
     }
 
-    // Preserve an existing compliment, or provide a default one.
-    if (!message.textContent.trim()) {
-      message.textContent =
-        flower.dataset.compliment ||
-        flowerCompliments[index % flowerCompliments.length];
-    }
+    compliment.hidden = true;
 
-    // Make sure every flower is an accessible button.
-    if (flower.tagName !== "BUTTON") {
-      flower.setAttribute("role", "button");
-      flower.setAttribute("tabindex", "0");
-    }
+    flower.addEventListener("click", () => {
+      const wasOpen = !compliment.hidden;
 
-    if (flower.tagName === "BUTTON" && !flower.hasAttribute("type")) {
-      flower.setAttribute("type", "button");
-    }
+      // Close the other flowers' compliments.
+      $$(".bloom").forEach(otherFlower => {
+        const otherText = $("small", otherFlower);
 
-    // Hide the compliment initially.
-    message.hidden = true;
-    message.style.display = "none";
+        if (otherText) {
+          otherText.hidden = true;
+          otherFlower.classList.remove("bloom-open");
+        }
 
-    flower.setAttribute("aria-expanded", "false");
+        otherFlower.setAttribute("aria-expanded", "false");
+      });
 
-    // Show or hide the compliment.
-    function toggleCompliment() {
-      const isHidden =
-        message.hidden ||
-        window.getComputedStyle(message).display === "none";
-
-      if (isHidden) {
-        message.hidden = false;
-        message.style.display = "block";
-        message.style.visibility = "visible";
-        message.style.opacity = "1";
-
-        flower.classList.add("bloomed");
+      // Toggle the selected compliment.
+      if (!wasOpen) {
+        compliment.hidden = false;
+        flower.classList.add("bloom-open");
         flower.setAttribute("aria-expanded", "true");
-      } else {
-        message.hidden = true;
-        message.style.display = "none";
-
-        flower.classList.remove("bloomed");
-        flower.setAttribute("aria-expanded", "false");
       }
-    }
-
-    flower.addEventListener("click", event => {
-      // Don't let a click on a nested link activate the flower.
-      if (event.target.closest("a")) return;
-
-      toggleCompliment();
     });
 
-    // Allow keyboard interaction for non-button flower elements.
-    if (flower.tagName !== "BUTTON") {
-      flower.addEventListener("keydown", event => {
-        if (event.key === "Enter" || event.key === " ") {
-          event.preventDefault();
-          toggleCompliment();
-        }
-      });
-    }
+    flower.setAttribute("aria-expanded", "false");
   });
 
   // ==========================================
-  // 7. HAPPY-MESSAGE JAR
+  // 7. HAPPY JAR
   // ==========================================
 
-  const messages = [
-    "You make the world a little softer just by being in it. 🌷",
-    "You do not have to be perfect to be wonderful. 💗",
-    "Tiny steps still count. Be proud of yourself. ✨",
-    "You deserve a friendship that feels safe and sunny. ☀️",
-    "Rest is allowed. You are enough, even on quiet days. 🌸",
-    "Your future has so many lovely little possibilities. 🦋",
-    "Somewhere, someone is smiling because of you. 💌",
-    "You are more loved and appreciated than you know. 🌹"
-  ];
-
-  const drawButton = $("#drawMessage");
+  const drawMessageButton = $("#drawMessage");
   const jarMessage = $("#jarMessage");
   const jarEmoji = $("#jarEmoji");
 
-  if (drawButton && jarMessage) {
-    drawButton.addEventListener("click", () => {
-      let pick;
+  const happyMessages = [
+    "You are more appreciated than you realise. 💗",
+    "You deserve a day filled with little joys. 🌸",
+    "Take a breath. You are doing better than you think. 🦋",
+    "Your smile is a little bit of sunshine. ☀️",
+    "You don't have to be perfect to be wonderful. 🌷",
+    "Good things take time. Keep believing in yourself. 🌱",
+    "You are allowed to rest and begin again tomorrow. 💕",
+    "Your kindness makes a difference, even when you don't see it. 🌹",
+    "Some of the best memories are still waiting for you. ✨",
+    "You deserve friendship that feels safe, warm, and genuine. 💐",
+    "Never forget to celebrate your own little victories. 🎀",
+    "The world is more beautiful with your unique light in it. 🌻",
+    "A difficult moment does not define your whole story. 💖",
+    "Be gentle with yourself. You are growing every day. 🌿",
+    "Sending you a virtual hug whenever you need one. 🫂"
+  ];
 
-      do {
-        pick = messages[Math.floor(Math.random() * messages.length)];
-      } while (
-        messages.length > 1 &&
-        pick === jarMessage.textContent
-      );
+  if (drawMessageButton && jarMessage) {
+    drawMessageButton.addEventListener("click", () => {
+      let message = randomItem(happyMessages);
 
-      jarMessage.textContent = pick;
+      if (
+        happyMessages.length > 1 &&
+        message === jarMessage.textContent
+      ) {
+        message = happyMessages.find(
+          item => item !== jarMessage.textContent
+        ) || message;
+      }
+
+      jarMessage.classList.remove("jar-pop");
+
+      // Restart the animation.
+      void jarMessage.offsetWidth;
+
+      jarMessage.textContent = message;
+      jarMessage.classList.add("jar-pop");
 
       if (jarEmoji) {
-        jarEmoji.textContent = ["🫙", "💌", "🌷", "💗"][
-          Math.floor(Math.random() * 4)
-        ];
+        jarEmoji.textContent = randomItem([
+          "🫙", "💗", "🌷", "🌸", "💐", "🦋"
+        ]);
       }
     });
   }
 
   // ==========================================
-  // 8. FINAL SURPRISE MODAL
+  // 8. APOLOGY MESSAGE
   // ==========================================
 
-  const finalScreen = $("#finalSurprise");
-  const openFinalButton = $("#finalSurpriseButton");
-  const closeFinalButton = $("#closeFinal");
+  const sorryButton = $("#sorryButton");
+  const apologyMessage = $("#apologyMessage");
+
+  if (sorryButton && apologyMessage) {
+    apologyMessage.hidden = true;
+
+    sorryButton.setAttribute("aria-expanded", "false");
+
+    sorryButton.addEventListener("click", () => {
+      const isOpening = apologyMessage.hidden;
+
+      apologyMessage.hidden = !isOpening;
+      apologyMessage.style.display = isOpening ? "block" : "none";
+
+      sorryButton.setAttribute(
+        "aria-expanded",
+        String(isOpening)
+      );
+
+      sorryButton.textContent = isOpening
+        ? "Close My Little Message ♡"
+        : "Open My Little Message 💌";
+
+      if (isOpening) {
+        apologyMessage.scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+      }
+    });
+  }
+
+  // ==========================================
+  // 9. FINAL SURPRISE
+  // ==========================================
+
+  const finalSurpriseButton = $("#finalSurpriseButton");
+  const finalSurprise = $("#finalSurprise");
+  const closeFinal = $("#closeFinal");
+
+  let previouslyFocusedElement = null;
 
   function openFinalSurprise() {
-    if (!finalScreen) return;
+    if (!finalSurprise) return;
 
-    finalScreen.classList.add("show");
-    finalScreen.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden";
+    previouslyFocusedElement = document.activeElement;
 
-    if (closeFinalButton) closeFinalButton.focus();
+    finalSurprise.classList.add("show");
+    finalSurprise.style.display = "flex";
+    finalSurprise.setAttribute("aria-hidden", "false");
+
+    document.body.classList.add("modal-open");
+
+    if (closeFinal) closeFinal.focus();
   }
 
   function closeFinalSurprise() {
-    if (!finalScreen) return;
+    if (!finalSurprise) return;
 
-    finalScreen.classList.remove("show");
-    finalScreen.setAttribute("aria-hidden", "true");
-    document.body.style.overflow = "";
+    finalSurprise.classList.remove("show");
+    finalSurprise.style.display = "none";
+    finalSurprise.setAttribute("aria-hidden", "true");
 
-    if (openFinalButton) {
-      openFinalButton.focus({ preventScroll: true });
+    document.body.classList.remove("modal-open");
+
+    if (
+      previouslyFocusedElement &&
+      typeof previouslyFocusedElement.focus === "function"
+    ) {
+      previouslyFocusedElement.focus();
     }
   }
 
-  if (openFinalButton) {
-    openFinalButton.addEventListener("click", openFinalSurprise);
+  if (finalSurprise) {
+    finalSurprise.style.display = "none";
+    finalSurprise.setAttribute("aria-hidden", "true");
   }
 
-  if (closeFinalButton) {
-    closeFinalButton.addEventListener("click", closeFinalSurprise);
+  if (finalSurpriseButton) {
+    finalSurpriseButton.addEventListener(
+      "click",
+      openFinalSurprise
+    );
+  }
+
+  if (closeFinal) {
+    closeFinal.addEventListener(
+      "click",
+      closeFinalSurprise
+    );
+  }
+
+  if (finalSurprise) {
+    finalSurprise.addEventListener("click", event => {
+      if (event.target === finalSurprise) {
+        closeFinalSurprise();
+      }
+    });
   }
 
   document.addEventListener("keydown", event => {
     if (
       event.key === "Escape" &&
-      finalScreen &&
-      finalScreen.classList.contains("show")
+      finalSurprise &&
+      finalSurprise.classList.contains("show")
     ) {
       closeFinalSurprise();
     }
   });
 
   // ==========================================
-  // 9. SORRY BUTTON AND APOLOGY MESSAGE
+  // 10. SCRATCH-TO-REVEAL PHOTO CARDS
   // ==========================================
 
-  const sorryButton = $("#sorryButton");
-  const apologyMessage = $("#apologyMessage") || $("#sorryNote");
+  $$(".scratch-card").forEach(card => {
+    const canvas = $(".scratch-overlay", card);
+    const hint = $(".scratch-hint", card);
 
-  if (sorryButton && apologyMessage) {
-    sorryButton.setAttribute("aria-expanded", "false");
+    if (!canvas || typeof canvas.getContext !== "function") {
+      console.error("Scratch card canvas is missing.", card);
+      return;
+    }
 
-    sorryButton.addEventListener("click", event => {
-      event.preventDefault();
-
-      apologyMessage.hidden = false;
-      apologyMessage.style.display = "block";
-      apologyMessage.style.visibility = "visible";
-      apologyMessage.style.opacity = "1";
-
-      sorryButton.setAttribute("aria-expanded", "true");
-
-      apologyMessage.scrollIntoView({
-        behavior: "smooth",
-        block: "center"
-      });
+    const ctx = canvas.getContext("2d", {
+      willReadFrequently: true
     });
-  }
 
-  // ==========================================
-  // 10. NAVIGATION LINKS
-  // ==========================================
+    if (!ctx) {
+      console.error("Could not initialise scratch canvas.", card);
+      return;
+    }
 
-  $$(".garden-nav a").forEach(link => {
-    link.addEventListener("click", event => {
-      const href = link.getAttribute("href");
+    let scratching = false;
+    let revealed = false;
+    let lastPoint = null;
+    let resizeObserver = null;
 
-      if (!href || !href.startsWith("#")) return;
+    // Keep the canvas on top of the image and make it visible.
+    canvas.style.position = "absolute";
+    canvas.style.inset = "0";
+    canvas.style.display = "block";
+    canvas.style.width = "100%";
+    canvas.style.height = "100%";
+    canvas.style.zIndex = "5";
+    canvas.style.opacity = "1";
+    canvas.style.visibility = "visible";
+    canvas.style.pointerEvents = "auto";
+    canvas.style.touchAction = "none";
 
-      let target;
+    if (hint) {
+      hint.style.pointerEvents = "none";
+      hint.style.zIndex = "6";
+    }
 
-      try {
-        target = $(href);
-      } catch {
+    function paintCover() {
+      if (revealed) return;
+
+      const rect = canvas.getBoundingClientRect();
+
+      if (!rect.width || !rect.height) {
+        requestAnimationFrame(paintCover);
         return;
       }
 
-      if (target) {
-        event.preventDefault();
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
-        target.scrollIntoView({
-          behavior: "smooth",
-          block: "start"
-        });
+      canvas.width = Math.round(rect.width * dpr);
+      canvas.height = Math.round(rect.height * dpr);
 
-        history.replaceState(null, "", href);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.globalCompositeOperation = "source-over";
+      ctx.clearRect(0, 0, rect.width, rect.height);
+
+      // Pink and rose-gold coating.
+      const gradient = ctx.createLinearGradient(
+        0, 0, rect.width, rect.height
+      );
+
+      gradient.addColorStop(0, "#f9d8e3");
+      gradient.addColorStop(0.45, "#d77f9c");
+      gradient.addColorStop(1, "#994360");
+
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, rect.width, rect.height);
+
+      // Tiny decorative sparkles.
+      for (let i = 0; i < 90; i++) {
+        const x = Math.random() * rect.width;
+        const y = Math.random() * rect.height;
+
+        ctx.beginPath();
+        ctx.arc(x, y, Math.random() * 1.8 + 0.5, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(255,255,255,0.5)";
+        ctx.fill();
       }
+
+      // Scratch instruction.
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillStyle = "#fffafc";
+      ctx.font = "bold 17px Georgia";
+      ctx.shadowColor = "rgba(70,15,40,0.5)";
+      ctx.shadowBlur = 5;
+      ctx.fillText(
+        "♡ Scratch to reveal ♡",
+        rect.width / 2,
+        rect.height / 2
+      );
+
+      ctx.shadowBlur = 0;
+
+      // Scratching removes the coating and exposes the photo.
+      ctx.globalCompositeOperation = "destination-out";
+    }
+
+    function getPoint(event) {
+      const rect = canvas.getBoundingClientRect();
+
+      return {
+        x: event.clientX - rect.left,
+        y: event.clientY - rect.top
+      };
+    }
+
+    function erase(point) {
+      if (revealed) return;
+
+      ctx.globalCompositeOperation = "destination-out";
+      ctx.lineCap = "round";
+      ctx.lineJoin = "round";
+      ctx.lineWidth = 38;
+
+      if (!lastPoint) {
+        ctx.beginPath();
+        ctx.arc(point.x, point.y, 19, 0, Math.PI * 2);
+        ctx.fill();
+      } else {
+        ctx.beginPath();
+        ctx.moveTo(lastPoint.x, lastPoint.y);
+        ctx.lineTo(point.x, point.y);
+        ctx.stroke();
+      }
+
+      lastPoint = point;
+    }
+
+    function revealPhoto() {
+      if (revealed) return;
+
+      revealed = true;
+      scratching = false;
+      lastPoint = null;
+
+      card.classList.add("scratched");
+
+      canvas.style.transition = "opacity 0.5s ease";
+      canvas.style.opacity = "0";
+      canvas.style.pointerEvents = "none";
+
+      if (hint) {
+        hint.style.transition = "opacity 0.3s ease";
+        hint.style.opacity = "0";
+      }
+
+      window.setTimeout(() => {
+        canvas.style.display = "none";
+
+        if (hint) hint.style.display = "none";
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        if (resizeObserver) resizeObserver.disconnect();
+      }, 550);
+    }
+
+    function checkProgress() {
+      if (revealed || !canvas.width || !canvas.height) return;
+
+      try {
+        const pixels = ctx.getImageData(
+          0, 0, canvas.width, canvas.height
+        ).data;
+
+        const totalPixels = canvas.width * canvas.height;
+        const step = 20;
+        let sampled = 0;
+        let transparent = 0;
+
+        for (let pixel = 0; pixel < totalPixels; pixel += step) {
+          sampled++;
+
+          if (pixels[pixel * 4 + 3] < 100) {
+            transparent++;
+          }
+        }
+
+        if (sampled > 0 && transparent / sampled > 0.38) {
+          revealPhoto();
+        }
+      } catch (error) {
+        console.warn("Could not measure scratch progress.", error);
+      }
+    }
+
+    canvas.addEventListener("pointerdown", event => {
+      if (revealed) return;
+
+      scratching = true;
+      lastPoint = null;
+
+      if (canvas.setPointerCapture) {
+        try {
+          canvas.setPointerCapture(event.pointerId);
+        } catch (_) {
+          // Continue scratching if pointer capture is unavailable.
+        }
+      }
+
+      erase(getPoint(event));
+      event.preventDefault();
+    });
+
+    canvas.addEventListener("pointermove", event => {
+      if (!scratching || revealed) return;
+
+      erase(getPoint(event));
+      event.preventDefault();
+    });
+
+    function stopScratch() {
+      if (!scratching) return;
+
+      scratching = false;
+      lastPoint = null;
+
+      checkProgress();
+    }
+
+    canvas.addEventListener("pointerup", stopScratch);
+    canvas.addEventListener("pointercancel", stopScratch);
+    canvas.addEventListener("lostpointercapture", stopScratch);
+
+    // Draw after layout is ready.
+    requestAnimationFrame(paintCover);
+
+    // Repaint if the page layout changes before scratching starts.
+    if ("ResizeObserver" in window) {
+      resizeObserver = new ResizeObserver(() => {
+        if (!revealed && !scratching) {
+          paintCover();
+        }
+      });
+
+      resizeObserver.observe(card);
+    } else {
+      window.addEventListener("resize", () => {
+        if (!revealed && !scratching) paintCover();
+      });
+    }
+  });
+
+  // ==========================================
+  // 11. PHOTO ERROR CHECK
+  // ==========================================
+
+  $$(".scratch-card img").forEach(img => {
+    img.addEventListener("error", () => {
+      console.error("Photo could not be loaded:", img.getAttribute("src"));
     });
   });
 
-  console.log("🌷 A Little Garden of Love initialized successfully.");
+  // ==========================================
+  // 12. FINISH
+  // ==========================================
+
+  console.log("🌷 A Little Garden of Love is ready!");
 });
