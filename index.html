@@ -191,6 +191,16 @@
       <div class="final-hearts">✨ 🦋 ✨</div><button class="btn" id="closeFinal">Keep this garden close 🌸</button>
     </div>
   </div>
-  <script src="script.js"></script>
+  <script src="script.js">
+document.getElementById("sorryButton").addEventListener("click", function () {
+  const note = document.getElementById("sorryNote");
+
+  note.hidden = !note.hidden;
+
+  this.textContent = note.hidden
+    ? "A little sorry 🥺💗"
+    : "Close my little sorry 💗";
+});
+</script>
 </body>
 </html>
