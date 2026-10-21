@@ -74,3 +74,35 @@ document.getElementById("petalBtn").addEventListener("click", () => {
   clearTimeout(toastTimer);
   toastTimer = setTimeout(() => toast.classList.remove("show"), 3000);
 });
+
+const gardenPassword = "rosebud"; // Change this password
+
+const passwordGate = document.getElementById("passwordGate");
+const passwordForm = document.getElementById("passwordForm");
+const passwordInput = document.getElementById("sitePassword");
+const passwordError = document.getElementById("gateError");
+
+passwordForm.addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  if (passwordInput.value === gardenPassword) {
+    passwordError.textContent = "";
+    passwordGate.classList.add("unlocked");
+  } else {
+    passwordError.textContent =
+      "Oops, that's not the right password. Please try again. 💗";
+
+    passwordInput.value = "";
+    passwordInput.focus();
+
+    passwordForm.animate(
+      [
+        { transform: "translateX(0)" },
+        { transform: "translateX(-7px)" },
+        { transform: "translateX(7px)" },
+        { transform: "translateX(0)" }
+      ],
+      { duration: 260 }
+    );
+  }
+});
