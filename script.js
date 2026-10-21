@@ -159,3 +159,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+  const sorryButton = document.getElementById("sorryButton");
+
+  if (!sorryButton) {
+    console.error("Sorry button not found!");
+    return;
+  }
+
+  sorryButton.addEventListener("click", function (event) {
+    event.preventDefault();
+
+    const apology = document.getElementById("apologyMessage");
+
+    if (apology) {
+      apology.style.display = "block";
+    } else {
+      alert("I'm really sorry ❤️ Please forgive me.");
+    }
+  });
+});
