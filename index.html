@@ -150,32 +150,21 @@
     </section>
 
 
-<button
-  type="button"
-  id="sorryButton"
-  onclick="document.getElementById('sorryNote').style.display =
-    document.getElementById('sorryNote').style.display === 'block'
-      ? 'none' : 'block';"
-  style="cursor:pointer;">
-  A little sorry 🥺💗
-</button>
 
-<div id="sorryNote"
-  style="display:none;max-width:560px;margin:1rem auto;
-  padding:1.4rem;border:1px solid #e9aebf;border-radius:20px;
-  background:#fff3f7;color:#795362;text-align:center;line-height:1.9;">
+<div id="sorryContainer">
+  <button class="btn" id="sorryButton"
+    aria-expanded="false"
+    aria-controls="sorryNote">
+    A little sorry 🥺💗
+  </button>
 
-  <strong>I'm sorry, Radhimaa 🌷</strong>
-
-  <p>
+  <div id="sorryNote" hidden>
+    <h3>I'm sorry, Radhimaa 🌷</h3>
     I'm sorry for all my silly fights and for the times I upset you.
-    No matter how much we fight, I still like you, and our friendship
-    means a lot to me. I hope we can always talk things out, forgive
-    each other, and keep making silly memories together. 💗
-  </p>
-
-  <p>Always your bestie ♡</p>
+    Our friendship means a lot to me. 💗
+  </div>
 </div>
+
 
 
     <footer>Made with a little extra <span>♥</span> for Radhimaa.</footer>
