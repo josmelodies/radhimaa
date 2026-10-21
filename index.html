@@ -4,512 +4,773 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#fff5f7">
-  <title>A Little Garden of Love</title>
+
+  <title>A Little Garden of Love 💗</title>
+  <meta name="description" content="A little garden filled with flowers, memories, friendship, and love.">
+
+  <meta name="theme-color" content="#3b202d">
+
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-  <!-- PASSWORD GATE -->
-  <div id="passwordGate" role="dialog" aria-modal="true" aria-labelledby="gateTitle">
-    <form class="gate-card" id="passwordForm">
-      <div class="gate-flowers" aria-hidden="true">🌹 💌 🌷</div>
-      <div class="section-label">a little secret garden</div>
-      <h2 id="gateTitle">Just for you, Radhimaa</h2>
-      <p>This little garden is waiting for its special person. 🌸<br>Enter the secret password to come inside.</p>
-      <label for="sitePassword">Your secret password</label>
-      <input id="sitePassword" type="password" placeholder="Type your password…" autocomplete="off" required>
-      <div class="gate-error" id="gateError" aria-live="polite"></div>
-      <button class="btn gate-btn" type="submit">Unlock my garden ✨</button>
-      <div class="gate-foot">MADE WITH LOVE ♡</div>
-    </form>
+  <!-- ==========================================
+       PASSWORD GATE
+       Password: rosebud
+       ========================================== -->
+
+  <div id="passwordGate">
+    <div class="gate-card">
+      <div class="gate-flowers">🌷 🌸 🌷</div>
+
+      <h2>A little surprise</h2>
+
+      <p>
+        A tiny garden made especially for you, Radhimaa.
+        Enter the secret password to open it. 💗
+      </p>
+
+      <form id="passwordForm">
+        <label for="sitePassword">Your secret password</label>
+
+        <input
+          id="sitePassword"
+          name="password"
+          type="password"
+          placeholder="Enter the password..."
+          autocomplete="off"
+          required
+        >
+
+        <div
+          id="gateError"
+          class="gate-error"
+          role="status"
+          aria-live="polite"
+        ></div>
+
+        <button class="btn gate-btn" type="submit">
+          Open Your Garden ♡
+        </button>
+      </form>
+
+      <div class="gate-foot">MADE WITH LOVE, JUST FOR YOU</div>
+    </div>
   </div>
 
-  <!-- MAIN WEBSITE -->
+  <!-- Falling petals are created by script.js -->
+  <div id="petals" class="petals" aria-hidden="true"></div>
+
+  <!-- ==========================================
+       MAIN WEBSITE
+       ========================================== -->
+
   <main id="app">
 
-    <nav class="garden-nav" aria-label="Garden sections">
-      <a href="#home">Home 🌷</a>
-      <a href="#little-things">Reminders</a>
-      <a href="#letter">Letter 💌</a>
-      <a href="#little-envelope">Open envelope</a>
-      <a href="#blooming-compliments">Flowers</a>
-      <a href="#photo-scrapbook">Scrapbook</a>
-      <a href="#happy-jar">Happy jar</a>
-      <a href="#friendship-music">Music 🎶</a>
-      <a href="#finalSurpriseButton">Final surprise ✨</a>
+    <!-- NAVIGATION -->
+
+    <nav class="garden-nav" aria-label="Main navigation">
+      <a href="#home">Home</a>
+      <a href="#memories">Memories</a>
+      <a href="#letter">Letter</a>
+      <a href="#garden">Garden</a>
+      <a href="#little-envelope">Envelope</a>
+      <a href="#compliments">Flowers</a>
+      <a href="#scrapbook">Our Photos</a>
+      <a href="#happy-jar">Happy Jar</a>
+      <a href="#sorry-section">Sorry 💌</a>
     </nav>
 
-    <div class="petals" id="petals" aria-hidden="true"></div>
+    <!-- ==========================================
+         HERO
+         ========================================== -->
 
-    <!-- HOME -->
-    <header class="hero" id="home">
+    <section class="hero" id="home">
       <div class="hero-inner">
-        <div class="eyebrow">a little something, just for you</div>
-        <div class="flower-crown" aria-hidden="true">🌹 ✿ 🌷</div>
-        <h1>For <em>Radhimaa,</em><br>my favorite human.</h1>
-        <p class="subtitle">Some people make ordinary days feel a little more magical. This tiny corner of the internet is made especially for you, Radhimaa. ♡</p>
-      </div>
-      <div class="scroll-note">a garden of kind words · scroll gently ↓</div>
-    </header>
 
-    <!-- REMINDERS -->
-    <section id="little-things">
+        <div class="eyebrow">A LITTLE SOMETHING FOR YOU</div>
+
+        <div class="flower-crown" aria-hidden="true">
+          🌷 🌸 🌹
+        </div>
+
+        <h1>
+          A Little Garden<br>
+          <em>of Love</em>
+        </h1>
+
+        <p class="subtitle">
+          For Radhimaa — a place filled with little memories,
+          warm hugs, silly smiles, beautiful flowers, and all
+          the things that make our friendship special. 💗
+        </p>
+
+        <a href="#memories" class="btn">
+          Enter Our Little World ♡
+        </a>
+
+      </div>
+
+      <div class="scroll-note">SCROLL DOWN TO EXPLORE ↓</div>
+    </section>
+
+    <!-- ==========================================
+         MEMORIES
+         ========================================== -->
+
+    <section id="memories">
       <div class="section-inner">
-        <div class="section-label">the little things</div>
-        <h2 class="section-title">Things I hope you never forget</h2>
-        <p class="section-desc">A few reminders, wrapped up like flowers, for the days when you need them most.</p>
+
+        <div class="section-label">THE LITTLE THINGS</div>
+
+        <h2 class="section-title">
+          Little Things, Big Feelings
+        </h2>
+
+        <p class="section-desc">
+          Sometimes the smallest moments become our favourite
+          memories. These are little reminders of how much
+          friendship can mean. 🌸
+        </p>
 
         <div class="memory-grid">
-          <article class="memory">
-            <div class="icon">🌷</div>
-            <h3>You matter.</h3>
-            <p>Your presence makes a difference in ways you might not even notice. The world is softer with you in it.</p>
-          </article>
 
           <article class="memory">
-            <div class="icon">🦋</div>
-            <h3>You can bloom.</h3>
-            <p>You don't have to have everything figured out. Even flowers take their own sweet time to open.</p>
+            <div class="icon">🌷</div>
+            <h3>Little Smiles</h3>
+            <p>
+              The kind of smiles that make an ordinary day
+              feel a little more magical.
+            </p>
           </article>
 
           <article class="memory">
             <div class="icon">💌</div>
-            <h3>You're appreciated.</h3>
-            <p>For your laughter, your kindness, your chaos, and all the little things that make you wonderfully you.</p>
+            <h3>Little Reminders</h3>
+            <p>
+              No matter what happens, never forget how
+              special and appreciated you are.
+            </p>
           </article>
+
+          <article class="memory">
+            <div class="icon">🦋</div>
+            <h3>Little Adventures</h3>
+            <p>
+              More laughs, more stories, more memories,
+              and plenty of moments still waiting for us.
+            </p>
+          </article>
+
         </div>
       </div>
     </section>
 
-    <!-- LETTER -->
+    <!-- ==========================================
+         LETTER
+         ========================================== -->
+
     <section id="letter">
       <div class="section-inner">
-        <div class="section-label">sealed with a smile</div>
-        <h2 class="section-title">A note for Radhimaa</h2>
-        <p class="section-desc">No special occasion needed. Some people deserve to be reminded that they're special, just because.</p>
 
-        <div class="letter-wrap">
-          <div class="hidden-letter" id="letterText">
-            <p>Hey Radhimaa, 🌹</p>
-            <p>I just wanted to make something beautiful for someone who deserves beautiful things. Thank you for being the kind of person who can make a random day better, a silly moment funnier, and a tough day feel a little less heavy.</p>
-            <p>Life won't always be a garden full of roses — there will be rainy days, messy days, and days when everything feels a bit too much. But I hope you always remember how much goodness you carry with you. I hope you keep laughing loudly, dreaming wildly, and being unapologetically yourself.</p>
-            <p>And no matter how busy life gets or how much things change, I'm really glad our paths crossed. Here's a little reminder that you're valued, you're loved as a friend, and you're one of a kind. 💗</p>
-            <p>Keep blooming, okay? The world needs your kind of magic.</p>
-            <p class="signoff">Your bestie, always ♡</p>
-          </div>
+        <div class="section-label">A NOTE FROM THE HEART</div>
 
-          <div class="reveal" id="revealPrompt">
-            <button class="btn" id="revealBtn" type="button">Unfold the letter 💌</button>
-          </div>
+        <h2 class="section-title">
+          Something I Want You to Know
+        </h2>
+
+        <p class="section-desc" id="revealPrompt">
+          There is a little letter waiting here for you.
+          Tap the button to open it. 💗
+        </p>
+
+        <div class="reveal">
+          <button class="btn" id="revealBtn" type="button">
+            Open My Letter 💌
+          </button>
         </div>
+
+        <article
+          id="letterText"
+          class="letter-wrap hidden-letter"
+          style="display:none"
+        >
+          <p>Dear Radhimaa, 🌷</p>
+
+          <p>
+            I made this little garden because sometimes a simple
+            message cannot hold all the appreciation I have for
+            someone.
+          </p>
+
+          <p>
+            I hope life gives you reasons to smile, people who
+            understand you, moments that make you laugh until
+            your cheeks hurt, and the courage to keep growing
+            into the person you want to be.
+          </p>
+
+          <p>
+            Thank you for being part of my world. I hope this
+            little corner reminds you that you matter and that
+            you deserve so many beautiful things.
+          </p>
+
+          <p>
+            Whenever life feels difficult, remember that a bad
+            day is not a bad life. Take a breath, be kind to
+            yourself, and keep blooming at your own pace. 🌸
+          </p>
+
+          <p class="signoff">
+            With lots of love and friendship ♡
+          </p>
+        </article>
+
       </div>
     </section>
 
-    <!-- GARDEN AND SURPRISES -->
-    <section class="garden">
+    <!-- ==========================================
+         GARDEN AND ROSE SHOWER
+         ========================================== -->
+
+    <section class="garden" id="garden">
       <div class="section-inner">
-        <div class="section-label">a wish for you</div>
-        <div class="bouquet" aria-hidden="true">🌸 🌹 🌼 🌷</div>
 
-        <p class="garden-quote">“May life give you a thousand little reasons to smile, and may you never forget how much light you bring to the people around you.”</p>
-        <p class="tiny">sending you sunshine, petals &amp; good vibes</p>
+        <div class="section-label">A LITTLE MAGIC</div>
 
-        <button class="btn" id="petalBtn" type="button">Send a shower of flowers 🌷</button>
+        <h2 class="section-title">
+          A Garden Just for You
+        </h2>
 
-        <div class="photo-surprise" id="photoSurprise" aria-live="polite">
-          <div class="photo-heart">
-            <img src="radhimaa.png" alt="Radhimaa, surrounded by love and roses" loading="lazy">
-          </div>
-          <h3>For my favourite Radhimaa 🌹</h3>
-          <p>You deserve all the roses in the world. Thank you for being you, bestie. ❤️</p>
+        <p class="section-desc">
+          Press the button and let a little shower of flowers
+          brighten your screen. Every flower carries a little
+          wish for your happiness. 🌹
+        </p>
+
+        <div class="bouquet" aria-hidden="true">
+          💐 🌷 💐
         </div>
 
-        <button class="btn final-trigger" id="finalSurpriseButton" type="button">
-          Open your secret final surprise 💗
-        </button>
+        <p class="garden-quote">
+          "May your heart always find a reason to bloom."
+        </p>
+
+        <p class="tiny">
+          A LITTLE FLOWER MAGIC, JUST FOR YOU
+        </p>
+
+        <div style="margin-top:2rem">
+          <button class="btn" id="petalBtn" type="button">
+            Send Me a Rose Shower 🌹
+          </button>
+        </div>
+
+        <!-- Surprise photo revealed by the rose shower -->
+
+        <div
+          class="photo-surprise"
+          id="photoSurprise"
+          aria-live="polite"
+        >
+          <div class="photo-heart">
+            <img
+              src="rg (1).jpeg"
+              alt="A special memory"
+              loading="lazy"
+            >
+          </div>
+
+          <h3>A Little Memory ♡</h3>
+
+          <p>
+            Some moments are too precious to be forgotten.
+            Here's a little reminder to smile. 💗
+          </p>
+        </div>
+
       </div>
     </section>
 
-    <!-- ENVELOPE -->
+    <!-- ==========================================
+         ENVELOPE
+         ========================================== -->
+
     <section class="feature-section" id="little-envelope">
       <div class="feature-inner">
-        <div class="section-label">a letter, just for you</div>
-        <h2 class="feature-title">A tiny envelope of love</h2>
-        <p class="feature-copy">Tap the envelope to open it. A little note will appear, one word at a time.</p>
+
+        <div class="section-label">SEALED WITH LOVE</div>
+
+        <h2 class="feature-title">
+          A Letter Inside an Envelope
+        </h2>
+
+        <p class="feature-copy">
+          There is a little note tucked inside this envelope.
+          Tap it to open it and watch your message appear. 💌
+        </p>
 
         <div class="envelope-stage">
-          <button class="envelope" id="envelopeButton" type="button" aria-label="Open the animated letter"></button>
+          <button
+            class="envelope"
+            id="envelopeButton"
+            type="button"
+            aria-label="Open or close the letter envelope"
+          ></button>
         </div>
 
-        <p class="envelope-note" id="envelopeHint">A little note is tucked inside ♡</p>
-        <div class="typed-letter" id="typedLetter" aria-live="polite"></div>
+        <p class="envelope-note" id="envelopeHint">
+          The letter is tucked safely inside ♡
+        </p>
+
+        <div
+          class="typed-letter"
+          id="typedLetter"
+          aria-live="polite"
+        ></div>
+
       </div>
     </section>
 
-    <!-- FLOWERS -->
-    <section class="feature-section" id="blooming-compliments">
-      <div class="feature-inner">
-        <div class="section-label">little blooms for you</div>
-        <h2 class="feature-title">Pick a flower, find a compliment</h2>
-        <p class="feature-copy">Every flower has a reminder waiting just for you. Tap each one to let it bloom.</p>
+    <!-- ==========================================
+         PICK A FLOWER, FIND A COMPLIMENT
+         ========================================== -->
 
-        <div class="compliment-garden" id="complimentGarden">
-          <button class="bloom" type="button"><span>🌷</span>Bloom one<small hidden>You make ordinary moments feel special. 💗</small></button>
-          <button class="bloom" type="button"><span>🌼</span>Bloom two<small hidden>Your kindness stays with people. ✨</small></button>
-          <button class="bloom" type="button"><span>🌹</span>Bloom three<small hidden>You deserve the same care you give others. 🌸</small></button>
-          <button class="bloom" type="button"><span>🌸</span>Bloom four<small hidden>Your laugh is a little kind of sunshine. ☀️</small></button>
+    <section class="feature-section" id="compliments">
+      <div class="feature-inner">
+
+        <div class="section-label">A FLOWER FOR YOUR HEART</div>
+
+        <h2 class="feature-title">
+          Pick a Flower, Find a Compliment
+        </h2>
+
+        <p class="feature-copy">
+          Every flower has a little reminder hidden inside.
+          Pick whichever flower catches your eye and tap it
+          to discover your compliment. 🌸
+        </p>
+
+        <div class="compliment-garden">
+
+          <button class="bloom" type="button">
+            <span aria-hidden="true">🌷</span>
+            <strong>Flower One</strong>
+            <small hidden>
+              You have a beautiful heart, Radhimaa. 🌷
+            </small>
+          </button>
+
+          <button class="bloom" type="button">
+            <span aria-hidden="true">🌹</span>
+            <strong>Flower Two</strong>
+            <small hidden>
+              Your smile can brighten someone's darkest day. ☀️
+            </small>
+          </button>
+
+          <button class="bloom" type="button">
+            <span aria-hidden="true">🌻</span>
+            <strong>Flower Three</strong>
+            <small hidden>
+              You deserve all the happiness in the world. 💗
+            </small>
+          </button>
+
+          <button class="bloom" type="button">
+            <span aria-hidden="true">🌸</span>
+            <strong>Flower Four</strong>
+            <small hidden>
+              You make ordinary moments feel special. ✨
+            </small>
+          </button>
+
+          <button class="bloom" type="button">
+            <span aria-hidden="true">🌺</span>
+            <strong>Flower Five</strong>
+            <small hidden>
+              Your kindness makes the world more beautiful. 🌸
+            </small>
+          </button>
+
+          <button class="bloom" type="button">
+            <span aria-hidden="true">🪻</span>
+            <strong>Flower Six</strong>
+            <small hidden>
+              You are one of a kind. Never forget that. 💖
+            </small>
+          </button>
+
+          <button class="bloom" type="button">
+            <span aria-hidden="true">🌼</span>
+            <strong>Flower Seven</strong>
+            <small hidden>
+              You bring a little sunshine wherever you go. 🌻
+            </small>
+          </button>
+
+          <button class="bloom" type="button">
+            <span aria-hidden="true">💐</span>
+            <strong>Flower Eight</strong>
+            <small hidden>
+              You deserve love, laughter, and beautiful memories. 🌹
+            </small>
+          </button>
+
         </div>
       </div>
     </section>
 
-    <!-- SCRAPBOOK -->
-    <section class="feature-section" id="photo-scrapbook">
-      <div class="feature-inner">
-        <div class="section-label">little moments, kept close</div>
-        <h2 class="feature-title">Our tiny scrapbook</h2>
-        <p class="feature-copy">A little space for favorite memories. Keep your photos in the same folder as this HTML file.</p>
+    <!-- ==========================================
+         OUR PHOTOS — SCRATCH TO REVEAL
+         ========================================== -->
+
+    <section id="scrapbook">
+      <div class="section-inner">
+
+        <div class="section-label">OUR LITTLE WORLD</div>
+
+        <h2 class="section-title">
+          Our Photos
+        </h2>
+
+        <p class="section-desc">
+          Every picture holds a memory. Scratch each card with
+          your finger or mouse to uncover the photos hidden
+          underneath. 💗
+        </p>
 
         <div class="scrapbook">
-          <figure class="scrap-frame" style="--tilt:-2deg">
-            <img src="rg (1).jpeg" alt="Radhimaa in the friendship scrapbook" loading="lazy">
-            <figcaption>Someone worth celebrating ♡</figcaption>
+
+          <!-- PHOTO 1 -->
+
+          <figure class="scrap-frame" style="--tilt:-1deg">
+            <div class="scratch-card">
+              <img
+                src="rg (1).jpeg"
+                alt="Our first special photo"
+                loading="lazy"
+              >
+
+              <canvas
+                class="scratch-overlay"
+                aria-label="Scratch to reveal the first photo"
+              ></canvas>
+
+              <div class="scratch-hint">
+                ♡ Scratch to reveal ♡
+              </div>
+            </div>
+
+            <figcaption>
+              A memory to keep forever 💗
+            </figcaption>
           </figure>
 
-          <figure class="scrap-frame" style="--tilt:-2deg">
-            <img src="rg (2).jpeg" alt="Radhimaa in the friendship scrapbook" loading="lazy">
-            <figcaption>A day to remember ♡</figcaption>
+          <!-- PHOTO 2 -->
+
+          <figure class="scrap-frame" style="--tilt:1deg">
+            <div class="scratch-card">
+              <img
+                src="rg (2).jpeg"
+                alt="Another special memory together"
+                loading="lazy"
+              >
+
+              <canvas
+                class="scratch-overlay"
+                aria-label="Scratch to reveal the second photo"
+              ></canvas>
+
+              <div class="scratch-hint">
+                ♡ Scratch to reveal ♡
+              </div>
+            </div>
+
+            <figcaption>
+              Little moments, big memories 🌷
+            </figcaption>
           </figure>
 
-          <figure class="scrap-frame" style="--tilt:-2deg">
-            <img src="rg (3).jpeg" alt="Radhimaa in the friendship scrapbook" loading="lazy">
-            <figcaption>More laughs, always ♡</figcaption>
+          <!-- PHOTO 3 -->
+
+          <figure class="scrap-frame" style="--tilt:-1deg">
+            <div class="scratch-card">
+              <img
+                src="rg (3).jpeg"
+                alt="A treasured photo"
+                loading="lazy"
+              >
+
+              <canvas
+                class="scratch-overlay"
+                aria-label="Scratch to reveal the third photo"
+              ></canvas>
+
+              <div class="scratch-hint">
+                ♡ Scratch to reveal ♡
+              </div>
+            </div>
+
+            <figcaption>
+              One for the scrapbook ✨
+            </figcaption>
           </figure>
+
         </div>
+
       </div>
     </section>
 
-    <!-- HAPPY JAR -->
+    <!-- ==========================================
+         HAPPY JAR
+         ========================================== -->
+
     <section class="feature-section" id="happy-jar">
       <div class="feature-inner">
-        <div class="section-label">a little joy, on demand</div>
-        <h2 class="feature-title">The happy-message jar</h2>
-        <p class="feature-copy">Whenever the day feels heavy, pick a tiny message from the jar.</p>
+
+        <div class="section-label">A LITTLE JOY FOR TODAY</div>
+
+        <h2 class="feature-title">
+          The Happy Jar
+        </h2>
+
+        <p class="feature-copy">
+          Whenever you need a little encouragement, pick a
+          message from this jar. You deserve reminders of
+          how wonderful you are. 💌
+        </p>
 
         <div class="feature-card jar">
-          <div class="jar-emoji" id="jarEmoji">🫙</div>
-          <div class="jar-message" id="jarMessage" aria-live="polite">There is a little happiness waiting inside.</div>
-          <button class="btn" id="drawMessage" type="button">Pick a happy thought ✨</button>
+
+          <div class="jar-emoji" id="jarEmoji" aria-hidden="true">
+            🫙
+          </div>
+
+          <div
+            class="jar-message"
+            id="jarMessage"
+            aria-live="polite"
+          >
+            Your next little reminder is waiting inside. 🌸
+          </div>
+
+          <button
+            class="btn"
+            id="drawMessage"
+            type="button"
+          >
+            Pick a Happy Message 💗
+          </button>
+
         </div>
+
       </div>
     </section>
 
-    <!-- MUSIC -->
-    <section class="feature-section" id="friendship-music">
-      <div class="feature-inner">
-        <div class="section-label">a soft soundtrack</div>
-        <h2 class="feature-title">A song for this little garden</h2>
-        <p class="feature-copy">Your song is here—press play and let it soundtrack your friendship memories.</p>
+    <!-- ==========================================
+         APOLOGY SECTION
+         ========================================== -->
 
-        <div class="feature-card music-player">
-          <div style="font-size:2.5rem">🎶 🌸 🎶</div>
-          <p style="color:#795362;line-height:1.7">A soundtrack for your friendship memories.</p>
-
-          <audio id="friendshipAudio" controls preload="metadata">
-            <source src="friendship-song.mp3" type="audio/mpeg">
-            Your browser does not support audio playback.
-          </audio>
-        </div>
-      </div>
-    </section>
-
-    <!-- APOLOGY BUTTON AND MESSAGE -->
     <section class="feature-section" id="sorry-section">
       <div class="feature-inner">
-        <div class="section-label">one thing from my heart</div>
-        <h2 class="feature-title">A little message for you 💗</h2>
-        <p class="feature-copy">There's something I want you to know.</p>
 
-        <button class="btn" id="sorryButton" type="button">
-          I'm Sorry 🥺❤️
+        <div class="section-label">FROM MY HEART</div>
+
+        <h2 class="feature-title">
+          One Little Thing I Want to Say
+        </h2>
+
+        <p class="feature-copy">
+          Sometimes words don't come out the way we want them to.
+          If you ever need a reminder that our friendship matters
+          to me, this little message is for you. 💗
+        </p>
+
+        <button
+          class="btn"
+          id="sorryButton"
+          type="button"
+          aria-expanded="false"
+          aria-controls="apologyMessage"
+        >
+          Open My Little Message 💌
         </button>
 
-        <div id="apologyMessage" hidden style="margin:25px auto;padding:28px;max-width:480px;background:#fff0f5;color:#63384b;border-radius:20px;text-align:center;box-shadow:0 8px 28px #63384b20;">
-          <div style="font-size:2.5rem">🥺🌹💗</div>
-          <h2>I'm Really Sorry, Radhimaa</h2>
-          <p>I never wanted to hurt you or make you feel bad.</p>
-          <p>You are important to me, and our friendship means a lot to me.</p>
-          <p>I know that words alone cannot fix everything, but I genuinely want to make things right.</p>
-          <p>I'm sorry for all my silly fights and for the times I upset you. No matter how much we fight, I still like you, and our friendship means a lot to me. I hope we can always talk things out, forgive each other, and keep making silly memories together. 💗 ❤️</p>
-          <div style="font-size:1.8rem">🌷 💌 🌷</div>
+        <div
+          class="feature-card"
+          id="apologyMessage"
+          hidden
+          aria-live="polite"
+        >
+          <h3>Dear Radhimaa, 💗</h3>
+
+          <p>
+            If I have ever hurt you, upset you, or made you feel
+            unappreciated, I am truly sorry. That was never what
+            I wanted for our friendship.
+          </p>
+
+          <p>
+            You matter to me, and I don't want small misunderstandings
+            to overshadow the good memories and happiness we share.
+          </p>
+
+          <p>
+            I know that words alone cannot fix everything, but I
+            hope my actions can show you how much I value you.
+            Thank you for being you. 🌷
+          </p>
+
+          <p>
+            Sending you a little hug, a thousand flowers, and
+            lots of love. 🫂🌸
+          </p>
+
+          <p class="signoff">
+            Always wishing you happiness ♡
+          </p>
         </div>
+
       </div>
     </section>
 
-    <footer>Made with a little extra <span>♥</span> for Radhimaa.</footer>
+    <!-- ==========================================
+         MUSIC PLAYER
+         ========================================== -->
 
-    <div id="toast" role="status" aria-live="polite">A little flower for you, Radhimaa 🌸</div>
+    <section class="feature-section" id="music">
+      <div class="feature-inner">
+
+        <div class="section-label">A LITTLE SOUNDTRACK</div>
+
+        <h2 class="feature-title">
+          A Song for You
+        </h2>
+
+        <p class="feature-copy">
+          Take a quiet moment, relax, and enjoy a little music.
+          Sometimes a song says what words cannot. 🎶
+        </p>
+
+        <div class="feature-card music-player">
+          <div style="font-size:3rem" aria-hidden="true">🎧 💗</div>
+
+          <p>
+            Press play and enjoy your little moment of peace.
+          </p>
+
+          <audio controls preload="metadata">
+            <source src="friendship-song.mp3" type="audio/mpeg">
+            Your browser does not support the audio player.
+          </audio>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================
+         FINAL SURPRISE
+         ========================================== -->
+
+    <section class="feature-section" id="final-section">
+      <div class="feature-inner">
+
+        <div class="section-label">ONE LAST LITTLE SURPRISE</div>
+
+        <h2 class="feature-title">
+          Before You Go...
+        </h2>
+
+        <p class="feature-copy">
+          There's one last little surprise waiting for you.
+          Open it whenever you're ready. 🌷
+        </p>
+
+        <button
+          class="btn final-trigger"
+          id="finalSurpriseButton"
+          type="button"
+        >
+          Open Your Final Surprise 💖
+        </button>
+
+      </div>
+    </section>
+
+    <!-- FINAL SURPRISE OVERLAY -->
+
+    <div
+      class="final-screen"
+      id="finalSurprise"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Your final surprise"
+      aria-hidden="true"
+    >
+      <div class="final-card">
+
+        <div class="final-hearts" aria-hidden="true">
+          🌷 💗 🌹
+        </div>
+
+        <h2>Keep Blooming</h2>
+
+        <p>
+          Dear Radhimaa, never forget that you deserve happiness,
+          kindness, laughter, and people who appreciate the person
+          you are.
+        </p>
+
+        <p>
+          No matter how busy life gets, I hope there will always
+          be beautiful memories waiting to be made, new reasons
+          to smile, and little moments that remind you how
+          special you are. 🦋
+        </p>
+
+        <p>
+          This garden may be a little website, but the thought
+          behind it is simple: you deserve something lovely. 💌
+        </p>
+
+        <div class="final-hearts" aria-hidden="true">
+          💐 🌸 💗
+        </div>
+
+        <button
+          class="btn"
+          id="closeFinal"
+          type="button"
+        >
+          Keep This Memory Close ♡
+        </button>
+
+      </div>
+    </div>
+
+    <!-- ==========================================
+         FOOTER
+         ========================================== -->
+
+    <footer>
+      <p>
+        Made with love, flowers, and a little bit of magic
+        <span>♡</span>
+      </p>
+
+      <p>For Radhimaa, always. 🌷</p>
+    </footer>
+
   </main>
 
-  <!-- FINAL SURPRISE OVERLAY -->
-  <div class="final-screen" id="finalSurprise" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="finalTitle">
-    <div class="final-card">
-      <div class="final-hearts">🌹 💗 🌷</div>
-      <div class="section-label">one last little thing</div>
-      <h2 id="finalTitle">You are a forever kind of friend.</h2>
-      <p>Radhimaa, I hope this garden reminds you that you are appreciated on the big days and the completely ordinary ones, too. Wherever life grows from here, I am cheering for you. Keep blooming, bestie. ♡</p>
-      <div class="final-hearts">✨ 🦋 ✨</div>
-      <button class="btn" id="closeFinal" type="button">Keep this garden close 🌸</button>
-    </div>
-  </div>
+  <!-- Optional notification element used by script.js -->
+  <div id="toast" role="status" aria-live="polite"></div>
 
-  <!-- WEBSITE JAVASCRIPT -->
-  <script>
-  (function () {
-    function setupWebsite() {
-      const gate = document.getElementById("passwordGate");
-      const form = document.getElementById("passwordForm");
-      const input = document.getElementById("sitePassword");
-      const error = document.getElementById("gateError");
-
-      // PASSWORD
-      if (gate && form && input && error) {
-        form.addEventListener("submit", function (event) {
-          event.preventDefault();
-
-          if (input.value.trim() === "rosebud") {
-            error.textContent = "";
-            gate.classList.add("unlocked");
-            document.body.style.overflow = "";
-          } else {
-            error.textContent = "Incorrect password. Please try again. 💗";
-            input.value = "";
-            input.focus();
-          }
-        });
-      }
-
-      // FINAL SURPRISE
-      const openButton = document.getElementById("finalSurpriseButton");
-      const finalScreen = document.getElementById("finalSurprise");
-      const closeButton = document.getElementById("closeFinal");
-
-      function openSurprise() {
-        if (!finalScreen) return;
-
-        finalScreen.style.setProperty("display", "flex", "important");
-        finalScreen.style.setProperty("visibility", "visible", "important");
-        finalScreen.style.setProperty("opacity", "1", "important");
-        finalScreen.style.setProperty("pointer-events", "auto", "important");
-        finalScreen.setAttribute("aria-hidden", "false");
-        document.body.style.overflow = "hidden";
-      }
-
-      function closeSurprise() {
-        if (!finalScreen) return;
-
-        finalScreen.style.setProperty("display", "none", "important");
-        finalScreen.setAttribute("aria-hidden", "true");
-        document.body.style.overflow = "";
-      }
-
-      if (finalScreen) {
-        finalScreen.style.setProperty("display", "none", "important");
-        finalScreen.setAttribute("aria-hidden", "true");
-      }
-
-      if (openButton) {
-        openButton.addEventListener("click", openSurprise);
-      }
-
-      if (closeButton) {
-        closeButton.addEventListener("click", closeSurprise);
-      }
-
-      document.addEventListener("keydown", function (event) {
-        if (event.key === "Escape") closeSurprise();
-      });
-
-      // SORRY BUTTON
-      const sorryButton = document.getElementById("sorryButton");
-      const apologyMessage = document.getElementById("apologyMessage");
-
-      if (sorryButton && apologyMessage) {
-        sorryButton.addEventListener("click", function () {
-          apologyMessage.hidden = false;
-          apologyMessage.style.display = "block";
-          apologyMessage.scrollIntoView({
-            behavior: "smooth",
-            block: "center"
-          });
-        });
-      }
-
-      // UNFOLD LETTER
-      const revealButton = document.getElementById("revealBtn");
-      const letterText = document.getElementById("letterText");
-
-      if (revealButton && letterText) {
-        revealButton.addEventListener("click", function () {
-          letterText.classList.toggle("show");
-          letterText.style.display = "block";
-          revealButton.textContent =
-            letterText.classList.contains("show")
-              ? "Fold the letter 💌"
-              : "Unfold the letter 💌";
-
-          if (!letterText.classList.contains("show")) {
-            letterText.style.display = "";
-          }
-        });
-      }
-
-      // FLOWER COMPLIMENTS
-      document.querySelectorAll(".bloom").forEach(function (button) {
-        button.addEventListener("click", function () {
-          const compliment = button.querySelector("small");
-          if (!compliment) return;
-
-          compliment.hidden = !compliment.hidden;
-          button.classList.toggle("bloomed", !compliment.hidden);
-        });
-      });
-
-      // HAPPY JAR
-      const drawButton = document.getElementById("drawMessage");
-      const jarMessage = document.getElementById("jarMessage");
-      const jarEmoji = document.getElementById("jarEmoji");
-
-      const happyMessages = [
-        "You deserve good things, even on difficult days. 🌷",
-        "Someone is lucky to have you in their life. 💗",
-        "You don't need to be perfect to be wonderful. 🦋",
-        "Take a breath. You are doing better than you think. 🌸",
-        "May something lovely surprise you today. ✨",
-        "Your smile can brighten an ordinary day. ☀️"
-      ];
-
-      let previousMessage = -1;
-
-      if (drawButton && jarMessage) {
-        drawButton.addEventListener("click", function () {
-          let index;
-
-          do {
-            index = Math.floor(Math.random() * happyMessages.length);
-          } while (happyMessages.length > 1 && index === previousMessage);
-
-          previousMessage = index;
-          jarMessage.textContent = happyMessages[index];
-
-          if (jarEmoji) jarEmoji.textContent = "💗";
-        });
-      }
-
-      // SEND FLOWERS
-      const petalButton = document.getElementById("petalBtn");
-      const petalsContainer = document.getElementById("petals");
-      const toast = document.getElementById("toast");
-
-      if (petalButton) {
-        petalButton.addEventListener("click", function () {
-          const photo = document.getElementById("photoSurprise");
-
-          if (photo) {
-            photo.style.display = "block";
-            photo.scrollIntoView({ behavior: "smooth", block: "center" });
-          }
-
-          if (toast) {
-            toast.textContent = "A little flower for you, Radhimaa 🌸";
-            toast.classList.add("show");
-            window.setTimeout(function () {
-              toast.classList.remove("show");
-            }, 2500);
-          }
-
-          if (petalsContainer) {
-            const flowers = ["🌸", "🌷", "🌹", "💗", "🌼"];
-
-            for (let i = 0; i < 18; i++) {
-              const petal = document.createElement("span");
-              petal.textContent = flowers[Math.floor(Math.random() * flowers.length)];
-              petal.setAttribute("aria-hidden", "true");
-
-              petal.style.position = "fixed";
-              petal.style.left = Math.random() * 100 + "vw";
-              petal.style.top = "-40px";
-              petal.style.zIndex = "9999";
-              petal.style.pointerEvents = "none";
-              petal.style.fontSize = (18 + Math.random() * 18) + "px";
-              petal.style.animation = "gardenPetalFall " +
-                (3 + Math.random() * 3) + "s linear forwards";
-
-              petalsContainer.appendChild(petal);
-
-              window.setTimeout(function () {
-                petal.remove();
-              }, 6500);
-            }
-          }
-        });
-      }
-
-      // ANIMATED ENVELOPE NOTE
-      const envelopeButton = document.getElementById("envelopeButton");
-      const typedLetter = document.getElementById("typedLetter");
-      const envelopeHint = document.getElementById("envelopeHint");
-
-      if (envelopeButton && typedLetter) {
-        let typingTimer = null;
-        let hasOpened = false;
-
-        envelopeButton.addEventListener("click", function () {
-          if (hasOpened) {
-            hasOpened = false;
-            if (typingTimer) window.clearInterval(typingTimer);
-            typedLetter.textContent = "";
-            envelopeButton.classList.remove("open");
-            if (envelopeHint) {
-              envelopeHint.textContent = "A little note is tucked inside ♡";
-            }
-            return;
-          }
-
-          hasOpened = true;
-          envelopeButton.classList.add("open");
-
-          if (envelopeHint) {
-            envelopeHint.textContent = "A little message, just for you ♡";
-          }
-
-          const message =
-            "Dear Radhimaa, never forget how special you are. Thank you for the smiles, the memories, and the little moments that make friendship beautiful. Keep blooming, bestie! 🌹💗";
-
-          let position = 0;
-          typedLetter.textContent = "";
-
-          typingTimer = window.setInterval(function () {
-            typedLetter.textContent += message.charAt(position);
-            position++;
-
-            if (position >= message.length) {
-              window.clearInterval(typingTimer);
-            }
-          }, 45);
-        });
-      }
-    }
-
-    if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", setupWebsite);
-    } else {
-      setupWebsite();
-    }
-  })();
-  </script>
-
-  <!-- Keep your existing script if it contains other website features. -->
+  <!-- Load the JavaScript only once -->
   <script src="script.js"></script>
+
 </body>
 </html>
