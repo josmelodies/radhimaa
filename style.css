@@ -331,3 +331,103 @@ footer span { color: #bb496c; }
     transition-duration: .01ms !important;
   }
 }
+
+.password-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background: radial-gradient(ellipse at top, #ffe2eb, #fff4f7 55%, #f9e6ee);
+  transition: opacity .7s ease, visibility .7s ease;
+}
+
+.password-gate.unlocked {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.password-card {
+  width: 100%;
+  max-width: 430px;
+  padding: 35px 28px;
+  text-align: center;
+  background: #fffafc;
+  border: 1px solid #efc2d0;
+  border-radius: 30px;
+  box-shadow: 0 24px 80px #9e365b22;
+  animation: gateRise .8s ease both;
+}
+
+.gate-flowers {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+
+.gate-eyebrow,
+.gate-footer {
+  font: 600 .7rem Arial, sans-serif;
+  letter-spacing: .16em;
+  color: #a13b5a;
+}
+
+.password-card h2 {
+  font-size: clamp(1.8rem, 7vw, 2.5rem);
+  font-weight: 400;
+  color: #8f2446;
+  margin: 15px 0;
+}
+
+.password-card > p:not(.gate-eyebrow):not(.gate-error) {
+  color: #795362;
+  line-height: 1.7;
+}
+
+.password-card label {
+  display: block;
+  margin-top: 22px;
+  text-align: left;
+  font: .85rem Arial, sans-serif;
+  color: #8f2446;
+}
+
+.password-card input {
+  width: 100%;
+  margin: 10px 0;
+  padding: 15px;
+  border: 1px solid #e8b7c7;
+  border-radius: 14px;
+  background: white;
+  color: #572039;
+  font-size: 1rem;
+  text-align: center;
+  outline: none;
+}
+
+.password-card input:focus {
+  border-color: #a92e52;
+  box-shadow: 0 0 0 4px #f4c8d455;
+}
+
+.password-card button {
+  width: 100%;
+}
+
+.gate-error {
+  min-height: 20px;
+  color: #b3264b;
+  font: .85rem Arial, sans-serif;
+}
+
+.gate-footer {
+  margin-top: 22px;
+  color: #b07a8b;
+}
+
+@keyframes gateRise {
+  from { opacity: 0; transform: translateY(18px) scale(.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
