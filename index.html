@@ -191,24 +191,42 @@
     </div>
   </div>
   
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  const button = document.getElementById("sorryButton");
-  const note = document.getElementById("sorryNote");
 
-  if (!button || !note) {
-    console.error("Sorry button or message was not found.");
-    return;
+<script>
+(function () {
+  function setupPassword() {
+    const gate = document.getElementById("passwordGate");
+    const form = document.getElementById("passwordForm");
+    const input = document.getElementById("sitePassword");
+    const error = document.getElementById("gateError");
+
+    if (!gate || !form || !input || !error) {
+      console.error("Password gate elements are missing.");
+      return;
+    }
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      if (input.value.trim() === "rosebud") {
+        error.textContent = "";
+        gate.classList.add("unlocked");
+      } else {
+        error.textContent =
+          "Incorrect password. Please try again. 💗";
+        input.value = "";
+        input.focus();
+      }
+    });
   }
 
-  button.addEventListener("click", function () {
-    note.hidden = !note.hidden;
-
-    this.textContent = note.hidden
-      ? "A little sorry 🥺💗"
-      : "Close my little sorry 💗";
-  });
-});
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", setupPassword);
+  } else {
+    setupPassword();
+  }
+})();
 </script>
+
 </body>
 </html>
